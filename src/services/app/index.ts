@@ -143,6 +143,7 @@ export const {
   setProjectId,
   createAppErr,
   clearAppErr,
+  changeTheme
 } = appSlice.actions;
 
 export default appSlice.reducer;

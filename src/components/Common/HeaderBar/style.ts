@@ -115,4 +115,20 @@ export const HeaderBarWrapper = styled.header`
       white-space: pre;
     }
   }
+  .itemThemes {
+    width: auto;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    background-color: green;
+  }
+  .itemItem{
+    display: grid;
+    grid-template-columns: 200px 200px 200px 200px;
+    grid-template-rows: 100px 100px 100px;
+    grid-gap: 10px;
+  }
+  .listSmall{
+    background-color: red;
+  }
 `;

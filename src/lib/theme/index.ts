@@ -1,3 +1,5 @@
+import { ThemesName } from "./types";
+
 const commonColor = {
   error: '#bf1650',
   shadow: 'rgba(0, 0, 0, 0.06)',
@@ -112,3 +114,13 @@ export const blueBeeTheme: ThemeType = {
   border: '#39B6FF',
   hoverHeader: '#13161A',
 };
+
+export const AllTheme: Array<{name: ThemesName, color: string}> = [
+  {name: 'light', color: lightTheme.header},
+  {name: 'dark', color: darkTheme.header},
+  {name: 'dracula', color: draculaTheme.header},
+  {name: 'capuchino', color: capuchinoTheme.header},
+  {name: 'matcha', color: matchaTheme.header},
+  {name: 'gray', color: grayTheme.header},
+  {name: 'blueBee', color: blueBeeTheme.header},
+]
