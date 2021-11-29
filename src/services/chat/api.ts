@@ -1,5 +1,5 @@
 import { getService, postService } from 'src/lib/helpers/connectApi';
-import { IConversation } from './types';
+import { IConversation, IGetChatFromDocRes } from './types';
 
 const endpoint = '/chat';
 
@@ -14,3 +14,7 @@ export function getChatContentApi(id: string): Promise<IConversation> {
 export const sendMessApi = (conversationId: string, text: string) => {
   return postService(endpoint, { conversationId, text });
 };
+
+export function getChatFromDocApi(docId: string):Promise<IGetChatFromDocRes>{
+  return getService(`${endpoint}/unit/${docId}`);
+}

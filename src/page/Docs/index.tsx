@@ -12,6 +12,9 @@ import IDoc from '../../services/doc/types';
 import { DocsScreenWrapper } from './style';
 import DetailApiModal from './components/DetailApiModal';
 import Pagination from 'src/components/Base/Pagination';
+import { useHistory } from 'react-router';
+import ROUTER_NAME from 'src/lib/constants/router';
+import Box from 'src/components/Base/Box';
 
 const DocsScreen = () => {
   const projectId = useAppSelector((state) => state.app.projectId);
@@ -30,6 +33,8 @@ const DocsScreen = () => {
     (title: DocTranslateKeyType) => t(`docTranslate.${title}`),
     [t]
   );
+
+  const history = useHistory();
 
   const getListDocs = useCallback(
     async (page: number, search: string) => {
@@ -59,6 +64,10 @@ const DocsScreen = () => {
     setIsShowDetail(true);
   };
 
+  const gotoChatScreen = (id: string) => {
+    history.push({ pathname: ROUTER_NAME.chat.path, state: { docId: id } });
+  };
+
   return (
     <DocsScreenWrapper>
       <HeaderTool
@@ -66,13 +75,14 @@ const DocsScreen = () => {
         onSearch={(searchKey) => setSearchKey(searchKey)}
       />
       <div className="docScreen__list_doc">
-        {listDocs.map((item) => (
+        {listDocs.length ? listDocs.map((item) => (
           <APIBox
             docData={item}
             key={item._id}
             onClickBox={() => onOpenDetail(item._id)}
+            handleToChat={() => gotoChatScreen(item._id)}
           />
-        ))}
+        )) : <Box>{words('empty')}</Box>}
       </div>
       {detailDoc && (
         <DetailApiModal
