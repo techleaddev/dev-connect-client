@@ -42,6 +42,7 @@ const Welcome = () => {
   };
   useEffect(() => {
     dispatch(getListProjectsThunk());
+    dispatch(setProjectId(''));
     getList();
   }, [dispatch]);
 

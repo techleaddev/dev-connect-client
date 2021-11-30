@@ -10,13 +10,12 @@ export const GlobalContainerWrapper = styled.div`
     'header header header'
     'sidebar container container'
     'sidebar container container';
-  /* header {
-    grid-area: header;
-  } */
-  /* nav {
-    grid-area: sidebar;
-    height: 100%;
-  } */
+
+  &.flex-body {
+    display: flex;
+    flex-direction: column;
+  }
+
   .container {
     grid-area: container;
     width: calc(100vw - 56px);
