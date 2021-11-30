@@ -28,4 +28,9 @@ export const PreperencesWrapper = styled.header`
       border: 2px blue solid;
     }
   }
+  .textIntro{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
 `

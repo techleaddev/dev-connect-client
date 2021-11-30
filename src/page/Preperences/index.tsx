@@ -5,31 +5,33 @@ import { useAppDispatch } from "src/hooks/useAppDispatch";
 import { addSnackBar, changeTheme } from "src/services/app";
 import { ThemesName } from "src/lib/theme/types";
 import clsx from "clsx";
-import { changeThemeApi } from '../../services/app/api';
-import { useAppSelector } from 'src/hooks/useAppSelector';
+import { changeThemeApi } from "../../services/app/api";
+import { useAppSelector } from "src/hooks/useAppSelector";
 
 const Preperences = () => {
-  const userId = useAppSelector(state=> state.user._id);
+  const userId = useAppSelector((state) => state.user._id);
   const theme = useAppSelector((state) => state.app.theme);
   const dispatch = useAppDispatch();
-  const changeThemeMode = async(name: ThemesName) => {
+  const changeThemeMode = async (name: ThemesName) => {
     try {
       const response = await changeThemeApi(userId, theme);
-      if(response) {
+      if (response) {
         dispatch(changeTheme(name));
-        dispatch(addSnackBar({type: 'success', message:'change color'}))
-      }    
-      
+        dispatch(addSnackBar({ type: "success", message: "change color" }));
+      }
     } catch (error) {
-      dispatch(addSnackBar({type: 'error', message:'change erorr'}))
+      dispatch(addSnackBar({ type: "error", message: "change erorr" }));
     }
   };
   return (
     <PreperencesWrapper>
       <div className="itemThemes">
-        <div>
-          <p>hello</p>
-          <p>good morning</p>
+        <div className="textIntro">
+          <p style={{ fontSize: 18, fontWeight: "bold" }}>Navigation theme</p>
+          <p>
+            Customize the appearance of the application header and navigation
+            sidebar.
+          </p>
         </div>
         <div className="itemItem">
           {AllTheme.map((item) => (
