@@ -80,13 +80,17 @@ const Conversations: FunctionComponent<IProps> = ({ conversation }) => {
 
   useEffect(() => {
     if (conversation.id) {
-      getListChat();
+      if (conversation.messages) {
+        setListMess(checkShowAvtMessage(conversation.messages));
+      } else {
+        getListChat();
+      }
     }
-  }, [conversation.id, getListChat]);
+  }, [conversation, getListChat]);
 
   const sendMess = () => {
     sendMessApi(conversation.id, message.trim()).then((res) => {
-      setListMess(checkShowAvtMessage(res.messages));
+      setListMess(checkShowAvtMessage(res.messages) || []);
       setMessage('');
     });
   };

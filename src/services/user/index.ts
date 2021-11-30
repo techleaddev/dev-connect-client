@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getService } from 'src/lib/helpers/connectApi';
-import { loading } from '../app';
-import { IUserState } from './types';
+import { ThemesName } from 'src/lib/theme/types';
+import { changeTheme, loading } from '../app';
+import IUserPreferences, { IUserState } from './types';
 
 const initialState: IUserState = {
   _id: '',
@@ -19,7 +20,10 @@ export const getUserInfoService = createAsyncThunk(
     thunkAPI.dispatch(loading(true));
     try {
       const userInfo = await getService('/user/info');
-      const preferences = await getService('/user/preferences');
+      const preferences: IUserPreferences = await getService(
+        '/user/preferences'
+      );
+      thunkAPI.dispatch(changeTheme(preferences.theme as ThemesName));
       return { ...userInfo, preferences } as IUserState;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

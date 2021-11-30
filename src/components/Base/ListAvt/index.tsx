@@ -12,11 +12,11 @@ interface IProps {
 const ListAvt: FunctionComponent<IProps> = ({ people }) => {
   return (
     <ListAvtWrapper>
-      {people.slice(0, 3).map((item) => {
+      {people.slice(0, 3).map((item, key: number) => {
         if (item.avt) {
-          return <img src={item.avt} alt="avt" className="avt_mem" />;
+          return <img src={item.avt} alt="avt" className="avt_mem" key={`avt_mem_${key}`} />;
         } else {
-          return <div className="avt_mem">{item.name.slice(0, 1)}</div>;
+          return <div className="avt_mem"  key={`avt_mem_${key}`}>{item.name.slice(0, 1)}</div>;
         }
       })}
       <div className="avt_mem">

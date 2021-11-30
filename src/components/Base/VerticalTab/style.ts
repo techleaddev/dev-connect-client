@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 export const VerticalTabWrapper = styled.div`
   min-height: 400px;
+  height: 100%;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 50px;
@@ -11,6 +12,7 @@ export const VerticalTabWrapper = styled.div`
       border: 1px solid ${color('border')};
       background-color: ${color('background1')};
       height: 100%;
+      overflow-y: auto;
     }
     &__menu {
       padding: 12px 6px;

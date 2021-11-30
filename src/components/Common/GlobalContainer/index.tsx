@@ -19,6 +19,7 @@ import { getInfoService } from 'src/services/project';
 import { clearAppErr } from 'src/services/app';
 import { getUserInfoService } from 'src/services/user';
 import Modal from 'src/components/Base/Modal';
+import clsx from 'clsx';
 
 interface IProps {
   children: ReactNode;
@@ -31,18 +32,20 @@ const GlobalContainer: FunctionComponent<IProps> = ({ children }) => {
   const history = useHistory();
   const dispatch = useAppDispatch();
   const withSidebar = useMemo(
-    () => location.pathname !== ROUTER_NAME.welcome.path,
-    [location]
+    () => location.pathname !== ROUTER_NAME.welcome.path && !!projectId,
+    [location.pathname, projectId]
   );
 
   useEffect(() => {
     if (!projectId && withSidebar) {
-      history.push(ROUTER_NAME.welcome.path);
+      if (location.pathname !== ROUTER_NAME.preferences.path) {
+        history.push(ROUTER_NAME.welcome.path);
+      }
     } else {
       dispatch(getInfoService({ id: projectId }));
     }
     dispatch(getUserInfoService());
-  }, [dispatch, history, projectId, withSidebar]);
+  }, [dispatch, history, location.pathname, projectId, withSidebar]);
 
   const closeErrorModal = (back?: boolean) => {
     if (error.isBack && back) {
@@ -55,7 +58,7 @@ const GlobalContainer: FunctionComponent<IProps> = ({ children }) => {
   };
 
   return (
-    <GlobalContainerWrapper>
+    <GlobalContainerWrapper className={clsx({"flex-body": !withSidebar})}>
       <HeaderBar />
 
       {withSidebar && <Sidebar />}

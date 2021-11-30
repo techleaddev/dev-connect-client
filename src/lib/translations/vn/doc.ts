@@ -17,6 +17,7 @@ const docTranslate = {
   lab: 'Kiểm thử',
   document: 'Tài liệu',
   notification: 'Thông báo',
+  empty: 'Không có bản ghi nào'
 };
 
 export type DocTranslateType = typeof docTranslate;

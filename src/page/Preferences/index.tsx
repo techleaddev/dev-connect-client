@@ -1,6 +1,6 @@
 import React from "react";
 import { AllTheme } from "src/lib/theme";
-import { PreperencesWrapper } from "./styles";
+import { PreferencesWrapper } from "./styles";
 import { useAppDispatch } from "src/hooks/useAppDispatch";
 import { addSnackBar, changeTheme } from "src/services/app";
 import { ThemesName } from "src/lib/theme/types";
@@ -8,14 +8,14 @@ import clsx from "clsx";
 import { changeThemeApi } from "../../services/app/api";
 import { useAppSelector } from "src/hooks/useAppSelector";
 
-const Preperences = () => {
-  const userId = useAppSelector((state) => state.user._id);
+const Preferences = () => {
+  const userId = useAppSelector(state=> state.user._id);
   const theme = useAppSelector((state) => state.app.theme);
   const dispatch = useAppDispatch();
   const changeThemeMode = async (name: ThemesName) => {
     try {
-      const response = await changeThemeApi(userId, theme);
-      if (response) {
+      const response = await changeThemeApi(userId, name);
+      if(response) {
         dispatch(changeTheme(name));
         dispatch(addSnackBar({ type: "success", message: "change color" }));
       }
@@ -24,7 +24,7 @@ const Preperences = () => {
     }
   };
   return (
-    <PreperencesWrapper>
+    <PreferencesWrapper>
       <div className="itemThemes">
         <div className="textIntro">
           <p style={{ fontSize: 18, fontWeight: "bold" }}>Navigation theme</p>
@@ -45,8 +45,8 @@ const Preperences = () => {
           ))}
         </div>
       </div>
-    </PreperencesWrapper>
+    </PreferencesWrapper>
   );
 };
 
-export default Preperences;
+export default Preferences;

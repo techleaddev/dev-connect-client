@@ -30,6 +30,7 @@ export const CopyFieldWrapper = styled.div`
     padding: 4px;
     font-style: italic;
     min-height: 16px;
+    white-space: break-spaces;
   }
 
   .copy-btn:active {
