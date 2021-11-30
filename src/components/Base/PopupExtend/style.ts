@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 export const PopupExtendWrapper = styled.div`
   position: relative;
+  cursor: pointer;
+  
   .popupElement {
     position: absolute;
     z-index: 50;

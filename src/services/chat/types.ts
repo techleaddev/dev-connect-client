@@ -2,6 +2,8 @@ export interface IConversationInfo {
   id: string;
   name: string;
   lastMess: string;
+  messages?: IMessage[];
+  unitId?: string;
 }
 export interface IMessage {
   _id: string;
@@ -18,6 +20,7 @@ export interface IMessage {
   date: Date;
 }
 export interface IConversation {
+  _id: string;
   name: string;
   projectId: string;
   unitId: string;
@@ -27,4 +30,9 @@ export interface IConversation {
   messages: IMessage[];
   createdAt: Date;
   updatedAt: Date;
+}
+
+export interface IGetChatFromDocRes {
+  listChat: IConversationInfo[];
+  newChat: IConversationInfo;
 }

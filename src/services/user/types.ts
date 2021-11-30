@@ -14,6 +14,7 @@ export default interface IUserPreferences {
   theme: string;
   language: string;
   snippets: Array<{
+    _id: string;
     name: string;
     template: string;
     isDefault: boolean;

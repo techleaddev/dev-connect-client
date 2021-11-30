@@ -17,7 +17,8 @@ const Pagination: FunctionComponent<IProps> = ({
 }) => {
   const from = current <= 5 ? 1 : current - 1;
   const to = current <= 5 ? 5 : current + 3;
-  return (
+  
+  return totalPage >= 2 ? (
     <PaginationWrapper>
       {current !== 1 && <BackIcon onClick={() => onChangePage(current - 1)} />}
       {from !== 1 && (
@@ -32,6 +33,7 @@ const Pagination: FunctionComponent<IProps> = ({
             <span
               className={clsx({ active: i === current })}
               onClick={() => onChangePage(i)}
+              key={`paging_${i}`}
             >
               {i}
             </span>
@@ -55,7 +57,7 @@ const Pagination: FunctionComponent<IProps> = ({
         <NextIcon onClick={() => onChangePage(current + 1)} />
       )}
     </PaginationWrapper>
-  );
+  ) : null;
 };
 
 export default Pagination;

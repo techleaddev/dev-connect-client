@@ -1,6 +1,7 @@
 import { uniqueId } from 'lodash';
 import { FunctionComponent } from 'react';
 import { ReactComponent as SearchIcon } from 'src/assets/icons/search.svg';
+import { ReactComponent as ConnectIcon } from 'src/assets/icons/connect.svg';
 import Skeleton from 'react-loading-skeleton';
 import { IConversationInfo } from 'src/services/chat/types';
 import { UserChatListWrapper } from '../style';
@@ -32,6 +33,7 @@ const UsersList: FunctionComponent<IProps> = ({
               key={uniqueId('contact_')}
             >
               <div className="cs-avt">
+                {!!i.unitId && <ConnectIcon />}
                 <span>{i.name?.slice(0, 1)}</span>
                 <span className="cs-avt-status"></span>
               </div>

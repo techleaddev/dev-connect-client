@@ -59,6 +59,13 @@ export const UserChatListWrapper = styled.div`
       border-radius: 8px;
       .cs-avt {
         margin-right: 1em;
+
+        svg{
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          fill: #06d6a0;
+        }
       }
       p {
         margin: 0;
