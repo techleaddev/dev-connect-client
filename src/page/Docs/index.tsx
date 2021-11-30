@@ -75,14 +75,18 @@ const DocsScreen = () => {
         onSearch={(searchKey) => setSearchKey(searchKey)}
       />
       <div className="docScreen__list_doc">
-        {listDocs.length ? listDocs.map((item) => (
-          <APIBox
-            docData={item}
-            key={item._id}
-            onClickBox={() => onOpenDetail(item._id)}
-            handleToChat={() => gotoChatScreen(item._id)}
-          />
-        )) : <Box>{words('empty')}</Box>}
+        {listDocs.length ? (
+          listDocs.map((item) => (
+            <APIBox
+              docData={item}
+              key={item._id}
+              onClickBox={() => onOpenDetail(item._id)}
+              handleToChat={() => gotoChatScreen(item._id)}
+            />
+          ))
+        ) : (
+          <Box>{words('empty')}</Box>
+        )}
       </div>
       {detailDoc && (
         <DetailApiModal
