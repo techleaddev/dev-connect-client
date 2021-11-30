@@ -62,6 +62,9 @@ const HeaderBar = memo(() => {
     setIsShowChangeProject(false);
   };
 
+  const nextToPreference=()=>{
+    history.push(ROUTER_NAME.preferences.path)
+  }
   return (
     <HeaderBarWrapper>
       <div className="header__logo">
@@ -106,7 +109,7 @@ const HeaderBar = memo(() => {
         <div className="header_set">
           <button>{commonWord('editStatus')}</button>
           <button>{commonWord('editProfile')}</button>
-          <button onClick={() => setIsShowSetting(true)}>
+          <button onClick={nextToPreference}>
             {commonWord('preferences')}
           </button>
         </div>
