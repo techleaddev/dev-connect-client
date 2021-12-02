@@ -141,7 +141,6 @@ const Preferences = () => {
                 title={editBasic ? "Save" : "Edit"}
               ></Button>
             </div>
-
             <InputNormal
               title="first_name"
               className="viewInputNormal"
