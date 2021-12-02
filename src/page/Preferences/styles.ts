@@ -4,17 +4,18 @@ import { color } from "../../lib/theme/mixin";
 export const PreferencesWrapper = styled.div`
   width: 100%;
   background-color: ${color("background1")};
+  text-align: start;
   .itemThemes {
     width: auto;
     height: auto;
     display: grid;
     grid-template-columns: 1fr 2fr;
-    margin-top: 40px;
+    margin-top: 20px;
     padding: 40px;
   }
   .itemItem {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(7, 1fr);
     gap: 20px;
   }
   .listSmall {
@@ -26,6 +27,7 @@ export const PreferencesWrapper = styled.div`
     &.active {
       border: 2px blue solid;
     }
+    border-radius: 10px;
   }
   .textIntro {
     display: flex;
@@ -45,6 +47,7 @@ export const PreferencesWrapper = styled.div`
   }
   .listInput {
     display: flex;
+    margin-top: 10px;
   }
   .form-control {
     padding: 15px;
@@ -53,17 +56,16 @@ export const PreferencesWrapper = styled.div`
   .showTextInput {
     width: 100%;
     align-items: center;
-    display: flex;
   }
   .labels {
     margin-right: 20px;
   }
   .showEmail {
-    margin-top: 50px;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    margin-top: 20px;
   }
   .textSave {
     margin-left: 50px;
@@ -73,5 +75,22 @@ export const PreferencesWrapper = styled.div`
     display: grid;
     grid-auto-columns: 200px 200px;
     gap: 20px;
+  }
+  .viewInputNormal {
+    width: 400px;
+    margin-top: 20px;
+  }
+  .viewInputNormalBio {
+    width: 400px;
+  }
+  .stylesBox {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 20px;
+  }
+  .titleEditBasic {
+    display: flex;
+    justify-content: space-between;
   }
 `;
