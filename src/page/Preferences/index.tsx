@@ -10,6 +10,7 @@ import {
   changeThemeApi,
   getInfoProfile,
   changeInfoNotNormal,
+  changePassword,
 } from "../../services/app/api";
 import { useAppSelector } from "src/hooks/useAppSelector";
 import ChangeLangue from "./../../components/Common/ChangeLangue/index";
@@ -18,6 +19,7 @@ import { userApi } from "./../../services/app/api";
 import { InputNormal } from "src/components/Base/Input";
 import Box from "src/components/Base/Box";
 import Button from "src/components/Base/Button";
+import Modal from "./../../components/Base/Modal/index";
 
 interface IUserNotNormal {
   company: string;
@@ -32,6 +34,11 @@ interface IUserBasic {
   last_name: string;
   first_name: string;
   email: string;
+}
+
+interface IChangePassword {
+  oldPassWord: string;
+  newPassWord: string;
 }
 
 const Preferences = () => {
@@ -51,8 +58,16 @@ const Preferences = () => {
     email: "",
   });
 
+  const [paramChangePw, setParamChangePw] = useState<IChangePassword>({
+    oldPassWord: "",
+    newPassWord: "",
+  });
+
   const [editBasic, setEditBasic] = useState<boolean>(false);
   const [editNormal, setEditNormal] = useState<boolean>(false);
+  const [isShowChangPw, setIsShowChangePw] = useState<boolean>(false);
+  const [showError, setShowError] = useState<string>("");
+
   const dispatch = useAppDispatch();
   const changeThemeMode = async (name: ThemesName) => {
     try {
@@ -92,6 +107,14 @@ const Preferences = () => {
       [event.target.name]: event?.target.value,
     });
   };
+
+  const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
+    setParamChangePw({
+      ...paramChangePw,
+      [event.target.name]: event?.target.value.trim(),
+    });
+  };
+
   const saveBasic = async () => {
     setEditBasic(!editBasic);
     if (editBasic) {
@@ -120,10 +143,22 @@ const Preferences = () => {
           dataNotNormal.skills,
           dataNotNormal.bio
         );
-        console.log("response chagne", response);
-      } catch (error) {
-        console.log("response error", error);
-      }
+      } catch (error) {}
+    }
+  };
+
+  const saveChangePassword = async () => {
+    try {
+      const response = await changePassword(
+        paramChangePw.oldPassWord,
+        paramChangePw.newPassWord
+      );
+      console.log("this is change pw", response);
+      dispatch(addSnackBar({ type: "success", message: "change password" }));
+      setIsShowChangePw(false);
+    } catch (error) {
+      console.log("error change pw", error);
+      setShowError(JSON.stringify(error));
     }
   };
 
@@ -165,6 +200,15 @@ const Preferences = () => {
               onChange={onChangeBasic}
               disable={!editBasic}
             />
+            <div className="titleEditBasic">
+              <p style={{ fontSize: 18, fontWeight: "bold" }}>
+                Do you want to change Password
+              </p>
+              <Button
+                onClick={() => setIsShowChangePw(true)}
+                title={"Change Password"}
+              ></Button>
+            </div>
           </Box>
           <Box>
             <div className="titleEditBasic">
@@ -265,6 +309,32 @@ const Preferences = () => {
           ))}
         </div>
       </div>
+      <Modal
+        isShow={isShowChangPw}
+        closeBtn={"Close"}
+        submitBtn="Confirm"
+        title="Change Password"
+        onClose={() => setIsShowChangePw(false)}
+        onSubmit={saveChangePassword}
+      >
+        <Box>
+          <InputNormal
+            title="Old password"
+            className="viewInputNormal"
+            name="oldPassWord"
+            value={paramChangePw.oldPassWord}
+            onChange={onChangePassword}
+          />
+          <InputNormal
+            title="New password"
+            className="viewInputNormal"
+            name="newPassWord"
+            value={paramChangePw.newPassWord}
+            onChange={onChangePassword}
+          />
+          <span>{showError}</span>
+        </Box>
+      </Modal>
     </PreferencesWrapper>
   );
 };

@@ -48,3 +48,7 @@ export const changeInfoNotNormal = (
     bio,
   });
 };
+
+export const changePassword = (oldPassWord: string, newPassWord: string) => {
+  return putService("/user/password", { oldPassWord, newPassWord });
+};

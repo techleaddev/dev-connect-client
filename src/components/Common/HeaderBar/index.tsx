@@ -23,7 +23,6 @@ import { InputNormal } from "src/components/Base/Input";
 const HeaderBar = memo(() => {
   const ref = useRef<HTMLDivElement>(null);
   const [isShowAvtModal, setIsShowAvtModal] = useState<boolean>(false);
-  const [isShowChangPw, setIsShowChangePw] = useState<boolean>(false);
 
   const [isShowChangeProject, setIsShowChangeProject] =
     useState<boolean>(false);
@@ -112,46 +111,8 @@ const HeaderBar = memo(() => {
           <button onClick={nextToPreference}>
             {commonWord("preferences")}
           </button>
-          <button onClick={() => setIsShowChangePw(true)}>
-            Change Password
-          </button>
         </div>
         <button onClick={onLogout}>{commonWord("logout")}</button>
-        <Modal
-          isShow={isShowChangPw}
-          closeBtn={commonWord("close")}
-          submitBtn="Confirm"
-          title="Change Password"
-          onClose={() => setIsShowChangePw(false)}
-          onSubmit={() => alert("oke")}
-        >
-          <Box>
-            <InputNormal
-              title="Old password"
-              className="viewInputNormal"
-              name="old_password"
-              value="Old password"
-              onChange={() => null}
-              // disable={!editBasic}
-            />
-            <InputNormal
-              title="New password"
-              className="viewInputNormal"
-              name="new_password"
-              value="New password"
-              onChange={() => null}
-              // disable={!editBasic}
-            />
-            <InputNormal
-              title="Confirm password"
-              className="viewInputNormal"
-              name="confirm_password"
-              value="Confirm password"
-              onChange={() => null}
-              // disable={!editBasic}
-            />
-          </Box>
-        </Modal>
       </div>
     </HeaderBarWrapper>
   );
