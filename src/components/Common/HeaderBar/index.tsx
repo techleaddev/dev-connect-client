@@ -3,10 +3,6 @@ import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router";
 import CopyField from "src/components/Base/CopyField";
 
-import Modal from "src/components/Base/Modal";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import dark from "react-syntax-highlighter/dist/esm/styles/hljs/a11y-dark";
-
 import PopupExtend from "src/components/Base/PopupExtend";
 import { useAppDispatch } from "src/hooks/useAppDispatch";
 import { useAppSelector } from "src/hooks/useAppSelector";
@@ -16,9 +12,6 @@ import { setProjectId } from "src/services/app";
 import { logout } from "src/services/auth";
 import ChangeLangue from "../ChangeLangue";
 import { HeaderBarWrapper } from "./style";
-import Box from "./../../Base/Box/index";
-import Button from "./../../Base/Button/index";
-import { InputNormal } from "src/components/Base/Input";
 
 const HeaderBar = memo(() => {
   const ref = useRef<HTMLDivElement>(null);

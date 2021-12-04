@@ -38,3 +38,17 @@ export type ICreateDocReq = {
   docData: Omit<IDoc, '_id' | 'status' | 'extension'>;
   projectId: string;
 };
+
+export interface IDocHistory {
+  author: {
+    _id: string;
+    first_name: string;
+    last_name: string;
+  };
+  docId: string;
+  diff: {
+    from: any;
+    to: any;
+  };
+  createdAt: Date;
+}

@@ -13,9 +13,7 @@ import {
   changePassword,
 } from "../../services/app/api";
 import { useAppSelector } from "src/hooks/useAppSelector";
-import ChangeLangue from "./../../components/Common/ChangeLangue/index";
 import i18n from "./../../i18n";
-import { userApi } from "./../../services/app/api";
 import { InputNormal } from "src/components/Base/Input";
 import Box from "src/components/Base/Box";
 import Button from "src/components/Base/Button";

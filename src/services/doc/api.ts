@@ -1,5 +1,5 @@
 import { getService, postService } from 'src/lib/helpers/connectApi';
-import { ICreateDocReq } from './types';
+import { ICreateDocReq, IDocHistory } from './types';
 const endpoint = '/doc';
 
 export const getListDocsApi = (
@@ -12,4 +12,8 @@ export const getListDocsApi = (
 
 export const createDocApi = (req: ICreateDocReq) => {
   return postService(endpoint, req);
+};
+
+export const getDocHistoryApi = (docId: string): Promise<IDocHistory[]> => {
+  return getService(`${endpoint}/history/${docId}`);
 };
