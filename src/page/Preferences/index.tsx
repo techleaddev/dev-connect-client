@@ -1,23 +1,23 @@
-import React, { useState, useEffect, ChangeEvent } from "react";
-import { AllTheme } from "src/lib/theme";
-import { PreferencesWrapper } from "./styles";
-import { useAppDispatch } from "src/hooks/useAppDispatch";
-import { addSnackBar, changeLanguage, changeTheme } from "src/services/app";
-import { ThemesName } from "src/lib/theme/types";
-import clsx from "clsx";
+import React, { useState, useEffect, ChangeEvent } from 'react';
+import { AllTheme } from 'src/lib/theme';
+import { PreferencesWrapper } from './styles';
+import { useAppDispatch } from 'src/hooks/useAppDispatch';
+import { addSnackBar, changeLanguage, changeTheme } from 'src/services/app';
+import { ThemesName } from 'src/lib/theme/types';
+import clsx from 'clsx';
 import {
   changeInfoBasic,
   changeThemeApi,
   getInfoProfile,
   changeInfoNotNormal,
   changePassword,
-} from "../../services/app/api";
-import { useAppSelector } from "src/hooks/useAppSelector";
-import i18n from "./../../i18n";
-import { InputNormal } from "src/components/Base/Input";
-import Box from "src/components/Base/Box";
-import Button from "src/components/Base/Button";
-import Modal from "./../../components/Base/Modal/index";
+} from '../../services/app/api';
+import { useAppSelector } from 'src/hooks/useAppSelector';
+import i18n from './../../i18n';
+import { InputNormal } from 'src/components/Base/Input';
+import Box from 'src/components/Base/Box';
+import Button from 'src/components/Base/Button';
+import Modal from './../../components/Base/Modal/index';
 
 interface IUserNotNormal {
   company: string;
@@ -43,28 +43,28 @@ const Preferences = () => {
   const userId = useAppSelector((state) => state.user._id);
   const theme = useAppSelector((state) => state.app.theme);
   const [dataNotNormal, setDataNotNormal] = useState<IUserNotNormal>({
-    company: "",
-    website: "",
-    location: "",
-    status: "",
-    skills: "",
-    bio: "",
+    company: '',
+    website: '',
+    location: '',
+    status: '',
+    skills: '',
+    bio: '',
   });
   const [dataBasic, setDataBasic] = useState<IUserBasic>({
-    last_name: "",
-    first_name: "",
-    email: "",
+    last_name: '',
+    first_name: '',
+    email: '',
   });
 
   const [paramChangePw, setParamChangePw] = useState<IChangePassword>({
-    oldPassWord: "",
-    newPassWord: "",
+    oldPassWord: '',
+    newPassWord: '',
   });
 
   const [editBasic, setEditBasic] = useState<boolean>(false);
   const [editNormal, setEditNormal] = useState<boolean>(false);
   const [isShowChangPw, setIsShowChangePw] = useState<boolean>(false);
-  const [showError, setShowError] = useState<string>("");
+  const [showError, setShowError] = useState<string>('');
 
   const dispatch = useAppDispatch();
   const changeThemeMode = async (name: ThemesName) => {
@@ -72,13 +72,13 @@ const Preferences = () => {
       const response = await changeThemeApi(userId, name);
       if (response) {
         dispatch(changeTheme(name));
-        dispatch(addSnackBar({ type: "success", message: "change color" }));
+        dispatch(addSnackBar({ type: 'success', message: 'change color' }));
       }
     } catch (error) {
-      dispatch(addSnackBar({ type: "error", message: "change erorr" }));
+      dispatch(addSnackBar({ type: 'error', message: 'change erorr' }));
     }
   };
-  const onChange = (lang: "vn" | "en") => {
+  const onChange = (lang: 'vn' | 'en') => {
     i18n.changeLanguage(lang);
     dispatch(changeLanguage(lang));
   };
@@ -122,9 +122,9 @@ const Preferences = () => {
           dataBasic.last_name,
           dataBasic.email
         );
-        console.log("response chagne", response);
+        console.log('response chagne', response);
       } catch (error) {
-        console.log("response error", error);
+        console.log('response error', error);
       }
     }
   };
@@ -133,7 +133,7 @@ const Preferences = () => {
     setEditNormal(!editNormal);
     if (editBasic) {
       try {
-        const response = await changeInfoNotNormal(
+         await changeInfoNotNormal(
           dataNotNormal.company,
           dataNotNormal.website,
           dataNotNormal.location,
@@ -147,15 +147,13 @@ const Preferences = () => {
 
   const saveChangePassword = async () => {
     try {
-      const response = await changePassword(
+      await changePassword(
         paramChangePw.oldPassWord,
         paramChangePw.newPassWord
       );
-      console.log("this is change pw", response);
-      dispatch(addSnackBar({ type: "success", message: "change password" }));
+      dispatch(addSnackBar({ type: 'success', message: 'change password' }));
       setIsShowChangePw(false);
     } catch (error) {
-      console.log("error change pw", error);
       setShowError(JSON.stringify(error));
     }
   };
@@ -166,12 +164,12 @@ const Preferences = () => {
         <div>
           <Box>
             <div className="titleEditBasic">
-              <p style={{ fontSize: 18, fontWeight: "bold" }}>
+              <p style={{ fontSize: 18, fontWeight: 'bold' }}>
                 Edit Basic Info
               </p>
               <Button
                 onClick={saveBasic}
-                title={editBasic ? "Save" : "Edit"}
+                title={editBasic ? 'Save' : 'Edit'}
               ></Button>
             </div>
             <InputNormal
@@ -199,23 +197,23 @@ const Preferences = () => {
               disable={!editBasic}
             />
             <div className="titleEditBasic">
-              <p style={{ fontSize: 18, fontWeight: "bold" }}>
+              <p style={{ fontSize: 18, fontWeight: 'bold' }}>
                 Do you want to change Password
               </p>
               <Button
                 onClick={() => setIsShowChangePw(true)}
-                title={"Change Password"}
+                title={'Change Password'}
               ></Button>
             </div>
           </Box>
           <Box>
             <div className="titleEditBasic">
-              <p style={{ fontSize: 18, fontWeight: "bold" }}>
+              <p style={{ fontSize: 18, fontWeight: 'bold' }}>
                 Edit Not Normal Info
               </p>
               <Button
                 onClick={saveNotNormal}
-                title={editNormal ? "Save" : "Edit"}
+                title={editNormal ? 'Save' : 'Edit'}
               ></Button>
             </div>
             <div className="stylesBox">
@@ -273,13 +271,13 @@ const Preferences = () => {
       </div>
       <div className="itemThemes">
         <div className="textIntro">
-          <p style={{ fontSize: 18, fontWeight: "bold" }}>Change Language 👉</p>
+          <p style={{ fontSize: 18, fontWeight: 'bold' }}>Change Language 👉</p>
         </div>
         <div className="change-langues-option">
-          <button onClick={() => onChange("vn")} className="lang_option">
+          <button onClick={() => onChange('vn')} className="lang_option">
             🇻🇳 Tiếng Việt
           </button>
-          <button onClick={() => onChange("en")} className="lang_option">
+          <button onClick={() => onChange('en')} className="lang_option">
             🇬🇧 English
           </button>
         </div>
@@ -287,7 +285,7 @@ const Preferences = () => {
 
       <div className="itemThemes">
         <div className="textIntro">
-          <p style={{ fontSize: 18, fontWeight: "bold", paddingRight: 20 }}>
+          <p style={{ fontSize: 18, fontWeight: 'bold', paddingRight: 20 }}>
             Navigation theme
           </p>
           <p style={{ paddingRight: 20 }}>
@@ -298,7 +296,7 @@ const Preferences = () => {
         <div className="itemItem">
           {AllTheme.map((item) => (
             <div
-              className={clsx("listSmall", { active: theme === item.name })}
+              className={clsx('listSmall', { active: theme === item.name })}
               onClick={() => changeThemeMode(item.name)}
               style={{ backgroundColor: item.color }}
             >
@@ -309,7 +307,7 @@ const Preferences = () => {
       </div>
       <Modal
         isShow={isShowChangPw}
-        closeBtn={"Close"}
+        closeBtn={'Close'}
         submitBtn="Confirm"
         title="Change Password"
         onClose={() => setIsShowChangePw(false)}

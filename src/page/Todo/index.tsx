@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useAppDispatch } from 'src/hooks/useAppDispatch';
 import { addSnackBar, createAppErr, spinLoading } from 'src/services/app';
 import {
+  deleteItem,
   getListTodoApi,
   switchTodoItem,
   updateTodoItem,
@@ -20,18 +21,21 @@ const TodoScreen = () => {
   const [editModalData, setEditModalData] = useState<false | ITodoItem>(false);
   const [createModalData, setCreateModalData] = useState<boolean>(false);
 
-  const getData = useCallback(async () => {
-    try {
-      const data = await getListTodoApi();
-      setListData(data);
-    } catch (error) {
-      dispatch(
-        createAppErr({
-          title: error as string,
-        })
-      );
-    }
-  }, [dispatch]);
+  const getData = useCallback(
+    async (searchKey?: string) => {
+      try {
+        const data = await getListTodoApi(searchKey);
+        setListData(data);
+      } catch (error) {
+        dispatch(
+          createAppErr({
+            title: error as string,
+          })
+        );
+      }
+    },
+    [dispatch]
+  );
 
   const changeItemNumber = async (id: string, newNumber: number) => {
     try {
@@ -64,6 +68,25 @@ const TodoScreen = () => {
     getData();
   }, [getData]);
 
+  const deleteTodoItem = async (id: string) => {
+    try {
+      await deleteItem(id);
+      getData();
+      dispatch(
+        addSnackBar({
+          type: 'success',
+          message: 'delete success',
+        })
+      );
+    } catch (error) {
+      dispatch(
+        createAppErr({
+          title: error as string,
+        })
+      );
+    }
+  };
+
   const editTodoItem = async (item: IEditTodoReq) => {
     try {
       dispatch(spinLoading(true));
@@ -88,7 +111,10 @@ const TodoScreen = () => {
 
   return (
     <TodoListWrapper>
-      <HeaderTool handleAddNew={() => setCreateModalData(true)} />
+      <HeaderTool
+        handleAddNew={() => setCreateModalData(true)}
+        onSearch={getData}
+      />
       <DragDropContext
         onDragEnd={(result, provided) => {
           if (result?.destination?.index !== result.source.index) {
@@ -118,7 +144,11 @@ const TodoScreen = () => {
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
                     >
-                      <TodoItem item={item} onEdit={handleEditItem} />
+                      <TodoItem
+                        item={item}
+                        onEdit={handleEditItem}
+                        deleteTodoItem={deleteTodoItem}
+                      />
                     </div>
                   )}
                 </Draggable>
