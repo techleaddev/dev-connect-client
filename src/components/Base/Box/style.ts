@@ -12,4 +12,16 @@ export const BoxWrapper = styled.div`
   &:hover {
     box-shadow: 0px 2px 6px 2px ${color('hoverShadow')};
   }
+
+  .box__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    h4 {
+      margin: 0;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+  }
 `;

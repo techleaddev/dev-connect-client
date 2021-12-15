@@ -2,11 +2,6 @@ import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router';
 import CopyField from 'src/components/Base/CopyField';
-
-import Modal from 'src/components/Base/Modal';
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import dark from 'react-syntax-highlighter/dist/esm/styles/hljs/a11y-dark';
-
 import PopupExtend from 'src/components/Base/PopupExtend';
 import { useAppDispatch } from 'src/hooks/useAppDispatch';
 import { useAppSelector } from 'src/hooks/useAppSelector';
@@ -20,6 +15,7 @@ import { HeaderBarWrapper } from './style';
 const HeaderBar = memo(() => {
   const ref = useRef<HTMLDivElement>(null);
   const [isShowAvtModal, setIsShowAvtModal] = useState<boolean>(false);
+
   const [isShowChangeProject, setIsShowChangeProject] =
     useState<boolean>(false);
   const userInfo = useAppSelector((state) => state.user);
@@ -58,9 +54,10 @@ const HeaderBar = memo(() => {
     setIsShowChangeProject(false);
   };
 
-  const nextToPreference=()=>{
-    history.push(ROUTER_NAME.preferences.path)
-  }
+  const nextToPreference = () => {
+    setIsShowAvtModal(false);
+    history.push(ROUTER_NAME.preferences.path);
+  };
   return (
     <HeaderBarWrapper>
       <div className="header__logo">
@@ -108,7 +105,6 @@ const HeaderBar = memo(() => {
             {commonWord('preferences')}
           </button>
         </div>
-
         <button onClick={onLogout}>{commonWord('logout')}</button>
       </div>
     </HeaderBarWrapper>

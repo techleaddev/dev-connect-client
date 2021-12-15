@@ -18,7 +18,6 @@ import {
   REQUEST_TYPE,
   RESPONSE_TYPE_OPTIONS,
   SELECT_OPTION,
-  // SELECT_OPTION,
 } from 'src/lib/constants/options';
 import { DocTranslateKeyType } from 'src/lib/translations/vn/doc';
 import { addSnackBar, createAppErr, spinLoading } from 'src/services/app';
