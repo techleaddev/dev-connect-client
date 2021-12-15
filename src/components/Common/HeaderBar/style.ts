@@ -13,6 +13,14 @@ export const HeaderBarWrapper = styled.header`
   background-color: ${color("header")};
 
   .header__logo {
+    display: flex;
+    align-items: center;
+    svg{
+      fill:  ${color("text1")};
+      margin-right: 16px;
+      height: 24px;
+      width: 24px;
+    }
     .header_project_name {
       border: hidden;
       padding: 8px;

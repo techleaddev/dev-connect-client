@@ -42,7 +42,7 @@ export const darkTheme: ThemeType = {
 
 export const draculaTheme: ThemeType = {
   ...commonColor,
-  header: '#191D3A',
+  header: '#12152a',
   background1: '#081229',
   background2: '#191D3A',
   button1: '#ec5990',

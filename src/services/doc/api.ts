@@ -10,6 +10,10 @@ export const getListDocsApi = (
   return getService(endpoint, { projectId, page, searchKey });
 };
 
+export const getListDocSelectsApi = (projectId: string) => {
+  return getService(endpoint + '/select', { projectId });
+};
+
 export const createDocApi = (req: ICreateDocReq) => {
   return postService(endpoint, req);
 };

@@ -32,8 +32,10 @@ const GlobalContainer: FunctionComponent<IProps> = ({ children }) => {
   const history = useHistory();
   const dispatch = useAppDispatch();
   const withSidebar = useMemo(
-    () => location.pathname !== ROUTER_NAME.welcome.path && !!projectId,
-    [location.pathname, projectId]
+    () =>
+      location.pathname !== ROUTER_NAME.welcome.path &&
+      location.pathname !== ROUTER_NAME.preferences.path,
+    [location.pathname]
   );
 
   useEffect(() => {
@@ -58,7 +60,7 @@ const GlobalContainer: FunctionComponent<IProps> = ({ children }) => {
   };
 
   return (
-    <GlobalContainerWrapper className={clsx({"flex-body": !withSidebar})}>
+    <GlobalContainerWrapper className={clsx({ 'flex-body': !withSidebar })}>
       <HeaderBar />
 
       {withSidebar && <Sidebar />}

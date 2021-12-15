@@ -1,17 +1,16 @@
-import { memo, useCallback, useEffect, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useHistory } from "react-router";
-import CopyField from "src/components/Base/CopyField";
-
-import PopupExtend from "src/components/Base/PopupExtend";
-import { useAppDispatch } from "src/hooks/useAppDispatch";
-import { useAppSelector } from "src/hooks/useAppSelector";
-import ROUTER_NAME from "src/lib/constants/router";
-import { CommonTranslateKeyType } from "src/lib/translations/vn/common";
-import { setProjectId } from "src/services/app";
-import { logout } from "src/services/auth";
-import ChangeLangue from "../ChangeLangue";
-import { HeaderBarWrapper } from "./style";
+import { memo, useCallback, useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router';
+import CopyField from 'src/components/Base/CopyField';
+import PopupExtend from 'src/components/Base/PopupExtend';
+import { useAppDispatch } from 'src/hooks/useAppDispatch';
+import { useAppSelector } from 'src/hooks/useAppSelector';
+import ROUTER_NAME from 'src/lib/constants/router';
+import { CommonTranslateKeyType } from 'src/lib/translations/vn/common';
+import { setProjectId } from 'src/services/app';
+import { logout } from 'src/services/auth';
+import ChangeLangue from '../ChangeLangue';
+import { HeaderBarWrapper } from './style';
 
 const HeaderBar = memo(() => {
   const ref = useRef<HTMLDivElement>(null);
@@ -39,9 +38,9 @@ const HeaderBar = memo(() => {
     [isShowAvtModal]
   );
   useEffect(() => {
-    document.addEventListener("click", handleClickOutSide, true);
+    document.addEventListener('click', handleClickOutSide, true);
     return () => {
-      document.removeEventListener("click", handleClickOutSide, true);
+      document.removeEventListener('click', handleClickOutSide, true);
     };
   }, [handleClickOutSide]);
 
@@ -56,6 +55,7 @@ const HeaderBar = memo(() => {
   };
 
   const nextToPreference = () => {
+    setIsShowAvtModal(false);
     history.push(ROUTER_NAME.preferences.path);
   };
   return (
@@ -89,7 +89,7 @@ const HeaderBar = memo(() => {
         />
       </div>
       <div
-        className={`profile-modal${isShowAvtModal ? " show" : ""}`}
+        className={`profile-modal${isShowAvtModal ? ' show' : ''}`}
         ref={ref}
       >
         <div className="header_status">
@@ -99,13 +99,13 @@ const HeaderBar = memo(() => {
         </div>
         <CopyField value={userInfo.email} className="copy_email" />
         <div className="header_set">
-          <button>{commonWord("editStatus")}</button>
-          <button>{commonWord("editProfile")}</button>
+          <button>{commonWord('editStatus')}</button>
+          <button>{commonWord('editProfile')}</button>
           <button onClick={nextToPreference}>
-            {commonWord("preferences")}
+            {commonWord('preferences')}
           </button>
         </div>
-        <button onClick={onLogout}>{commonWord("logout")}</button>
+        <button onClick={onLogout}>{commonWord('logout')}</button>
       </div>
     </HeaderBarWrapper>
   );

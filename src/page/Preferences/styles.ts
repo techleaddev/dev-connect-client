@@ -7,6 +7,9 @@ export const PreferencesWrapper = styled.div`
   gap: 16px;
   padding: 16px;
   text-align: start;
+  .goBack_btn{
+    width: 100px;
+  }
   .preferences__item {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;

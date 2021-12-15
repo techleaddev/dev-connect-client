@@ -1,5 +1,18 @@
 import { METHOD_API } from 'src/lib/constants';
-import { REQUEST_TYPE } from 'src/lib/constants/options';
+import { REQUEST_TYPE, SELECT_OPTION } from 'src/lib/constants/options';
+
+export type IDocSelectOption = SELECT_OPTION & {
+  members: SELECT_OPTION[];
+};
+export interface IDocStore {
+  docSelect: Array<IDocSelectOption>;
+}
+
+export interface IGetListDocSelectRes {
+  _id: string;
+  title: string;
+  members: Array<{ id_member: string; name: string }>;
+}
 
 export interface IRequest {
   field: string;

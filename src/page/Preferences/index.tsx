@@ -18,6 +18,7 @@ import { InputNormal } from 'src/components/Base/Input';
 import Box, { BowWithHeader } from 'src/components/Base/Box';
 import Button from 'src/components/Base/Button';
 import Modal from './../../components/Base/Modal/index';
+import { useHistory } from 'react-router-dom';
 
 interface IUserNotNormal {
   company: string;
@@ -158,8 +159,11 @@ const Preferences = () => {
     }
   };
 
+  const history = useHistory();
+  
   return (
     <PreferencesWrapper>
+      <Button title="Go back" onClick={() => history.goBack()} className='goBack_btn' />
       <BowWithHeader
         title="Edit Basic Info"
         btnTitle={editBasic ? 'Save' : 'Edit'}
