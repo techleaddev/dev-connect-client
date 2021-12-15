@@ -34,4 +34,8 @@ export const TextAreaWrapper = styled.textarea`
   padding: 14px;
   background-color: ${color('background2')};
   color: ${color('text1')};
+
+  &:disabled {
+    opacity: 0.5;
+  }
 `;

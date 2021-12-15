@@ -15,6 +15,13 @@ export const createProjectApi = (req: ICreateProjectReq) => {
   return postService(endpoint, req);
 };
 
+export const editProjectApi = (
+  projectId: string,
+  data: { name: string; description: string; readme: string }
+) => {
+  return putService(`${endpoint}/${projectId}`, data);
+};
+
 export function getProjectsApi(): Promise<IProjectsListRes[]> {
   return getService(endpoint);
 }
