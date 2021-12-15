@@ -15,7 +15,7 @@ import {
 import { useAppSelector } from 'src/hooks/useAppSelector';
 import i18n from './../../i18n';
 import { InputNormal } from 'src/components/Base/Input';
-import Box, { BowWithHeader } from 'src/components/Base/Box';
+import Box, { BoxWithHeader } from 'src/components/Base/Box';
 import Button from 'src/components/Base/Button';
 import Modal from './../../components/Base/Modal/index';
 import { useHistory } from 'react-router-dom';
@@ -164,7 +164,7 @@ const Preferences = () => {
   return (
     <PreferencesWrapper>
       <Button title="Go back" onClick={() => history.goBack()} className='goBack_btn' />
-      <BowWithHeader
+      <BoxWithHeader
         title="Edit Basic Info"
         btnTitle={editBasic ? 'Save' : 'Edit'}
         handleClickBtn={saveBasic}
@@ -191,16 +191,16 @@ const Preferences = () => {
           onChange={onChangeBasic}
           disable={!editBasic}
         />
-      </BowWithHeader>
-      <BowWithHeader
+      </BoxWithHeader>
+      <BoxWithHeader
         title="Do you want to change Password"
         className="preferences__item"
         btnTitle="Change Password"
         handleClickBtn={() => setIsShowChangePw(true)}
       >
         {null}
-      </BowWithHeader>
-      <BowWithHeader
+      </BoxWithHeader>
+      <BoxWithHeader
         title="Edit Not Normal Info"
         btnTitle={editNormal ? 'Save' : 'Edit'}
         handleClickBtn={saveNotNormal}
@@ -248,8 +248,8 @@ const Preferences = () => {
           onChange={onChangeNotNormal}
           disable={!editNormal}
         />
-      </BowWithHeader>
-      <BowWithHeader title="Change Language 👉" className="preferences__item">
+      </BoxWithHeader>
+      <BoxWithHeader title="Change Language 👉" className="preferences__item">
         <div className="change-langues-option">
           <button onClick={() => onChange('vn')} className="lang_option">
             🇻🇳 Tiếng Việt
@@ -258,9 +258,9 @@ const Preferences = () => {
             🇬🇧 English
           </button>
         </div>
-      </BowWithHeader>
+      </BoxWithHeader>
 
-      <BowWithHeader
+      <BoxWithHeader
         title="Navigation theme"
         className="preferences__item listTheme"
       >
@@ -273,7 +273,7 @@ const Preferences = () => {
             <span>{item.name}</span>
           </div>
         ))}
-      </BowWithHeader>
+      </BoxWithHeader>
       <Modal
         isShow={isShowChangPw}
         closeBtn={'Close'}

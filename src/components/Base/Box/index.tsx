@@ -22,12 +22,12 @@ const Box: FunctionComponent<IProps> = memo(
 
 export default Box;
 
-interface IBowWithHeaderProps {
+interface IBoxWithHeaderProps {
   title: string;
   btnTitle?: string;
   handleClickBtn?: () => void;
 }
-export const BowWithHeader: FunctionComponent<IProps & IBowWithHeaderProps> =
+export const BoxWithHeader: FunctionComponent<IProps & IBoxWithHeaderProps> =
   memo(
     ({
       children,
