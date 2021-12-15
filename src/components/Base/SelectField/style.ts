@@ -12,10 +12,20 @@ export const SelectFieldWrapper = styled.div`
 
   .css-yk16xz-control {
     padding: 4px 0;
+    background-color: ${color('background2')};
+
+    .css-1uccc91-singleValue {
+      color: ${color('text1')};
+    }
   }
 
   .css-1pahdxg-control {
     padding: 4px 0;
+    background-color: ${color('background2')};
+
+    .css-1uccc91-singleValue {
+      color: ${color('text1')};
+    }
   }
 
   i {

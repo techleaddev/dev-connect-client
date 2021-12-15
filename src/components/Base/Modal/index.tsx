@@ -10,6 +10,7 @@ interface IProps {
   submitBtn?: string;
   onClose: () => void;
   onSubmit?: () => void;
+  disableSubmit?: boolean;
 }
 
 const Modal: FunctionComponent<IProps> = ({
@@ -20,6 +21,7 @@ const Modal: FunctionComponent<IProps> = ({
   submitBtn,
   onClose,
   onSubmit,
+  disableSubmit,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -39,7 +41,7 @@ const Modal: FunctionComponent<IProps> = ({
         <div className="modal__footer">
           <Button title={closeBtn} onClick={onClose} />
           {submitBtn && onSubmit ? (
-            <Button title={submitBtn} onClick={onSubmit} />
+            <Button title={submitBtn} onClick={onSubmit} disable={disableSubmit} />
           ) : null}
         </div>
       </div>

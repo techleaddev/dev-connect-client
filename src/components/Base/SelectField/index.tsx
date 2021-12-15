@@ -76,14 +76,16 @@ export const SelectFieldNormal: FunctionComponent<
     <SelectFieldWrapper className={className}>
       {!!title && <label>{title}</label>}
       <Select
-      name={name}
+        name={name}
         value={value}
         onChange={onChange}
         options={options}
         placeholder={placeholder}
         isMulti={isMulti}
         closeMenuOnSelect={closeMenuOnSelect}
-        styles={{ option: (styles) => ({ ...styles, color: '#000' }) }}
+        styles={{
+          option: (styles) => ({ ...styles, color: '#000' }),
+        }}
       />
       {error && <i>{error}</i>}
     </SelectFieldWrapper>
