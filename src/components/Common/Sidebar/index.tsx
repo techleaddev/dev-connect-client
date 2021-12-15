@@ -26,9 +26,9 @@ const Sidebar = () => {
       <NavLink to={ROUTER_NAME.todo.path} className="sidebar-menu">
         <TodoIcon />
       </NavLink>
-      <NavLink to={ROUTER_NAME.dashboard.path} className="sidebar-menu">
+      {/* <NavLink to={ROUTER_NAME.dashboard.path} className="sidebar-menu">
         <DocIcon />
-      </NavLink>
+      </NavLink> */}
     </SidebarWrapper>
   );
 };

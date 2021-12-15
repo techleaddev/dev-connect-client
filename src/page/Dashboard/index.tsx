@@ -7,6 +7,7 @@ import {
   addMember,
   addStatusListApi,
   addTagsApi,
+  deleteMemberApi,
   editProjectApi,
 } from 'src/services/project/api';
 import { DashboardWrapper } from './style';
@@ -20,7 +21,10 @@ import {
   getTagsService,
 } from 'src/services/project';
 import { TextAreaNormal } from 'src/components/Base/TextArea';
+import { ReactComponent as TrashIcon } from 'src/assets/icons/trash.svg';
+
 import { PieChart, Pie, Tooltip } from 'recharts';
+import IconHover from 'src/components/Base/IconHover';
 const data01 = [
   { name: 'Group A', value: 400 },
   { name: 'Group B', value: 300 },
@@ -54,6 +58,11 @@ const Dashboard = () => {
   const [isShowAddStatus, setIsShowAddStatus] = useState(false);
   const [isShowAddTag, setIsShowAddTag] = useState(false);
   const [isOpenEditProject, setIsOpenEditProject] = useState(false);
+  const [isShowDelete, setIsShowDelete] = useState({
+    isShow: false,
+    type: '',
+    id: '',
+  });
   const handleChangeAdd = (e: ChangeEvent<HTMLInputElement>) => {
     setAddMem(e.target.value);
   };
@@ -67,7 +76,7 @@ const Dashboard = () => {
     try {
       if (projectInfo?._id) {
         await addMember(addMem, projectInfo._id);
-
+        dispatch(getInfoService({ id: projectInfo._id }));
         dispatch(
           addSnackBar({
             type: 'success',
@@ -143,6 +152,36 @@ const Dashboard = () => {
     setProjectState((pre) => ({ ...pre, [e.target.name]: e.target.value }));
   };
 
+  const openDelete = (type: string, id: string) => {
+    setIsShowDelete({
+      id: id,
+      isShow: true,
+      type: type,
+    });
+  };
+
+  const onDelete = async () => {
+    try {
+      switch (isShowDelete.type) {
+        case 'member':
+          await deleteMemberApi(projectInfo._id, isShowDelete.id);
+          dispatch(getInfoService({ id: projectInfo._id }));
+          break;
+
+        default:
+          break;
+      }
+      dispatch(addSnackBar({ type: 'success', message: 'Xoá thành công' }));
+    } catch (error) {
+      dispatch(addSnackBar({ type: 'error', message: 'Xoá thất bại' }));
+    } finally {
+      setIsShowDelete({
+        id: '',
+        isShow: false,
+        type: '',
+      });
+    }
+  };
   useEffect(() => {
     setProjectState({
       name: projectInfo?.name || '',
@@ -189,13 +228,17 @@ const Dashboard = () => {
           handleClickBtn={() => setIsShowAddMember(true)}
           className="__element"
         >
-          <ul>
-            {projectInfo?.members?.map((item) => (
-              <li key={item.member_id}>
-                <h3>{item.name}</h3>
-              </li>
-            ))}
-          </ul>
+          {projectInfo?.members?.map((item) => (
+            <div className="__element__item" key={`member__${item.member_id}`}>
+              <span>{item.name}</span>
+              <IconHover>
+                <TrashIcon
+                  className="icon"
+                  onClick={() => openDelete('member', item.member_id)}
+                />
+              </IconHover>
+            </div>
+          ))}
         </BoxWithHeader>
         <BoxWithHeader
           title="List Status"
@@ -203,16 +246,20 @@ const Dashboard = () => {
           handleClickBtn={() => setIsShowAddStatus(true)}
           className="__element"
         >
-          <ul>
-            {statusList?.map((item) => (
-              <li key={item._id}>
-                <p style={{ color: item.color }}>
-                  {item.name} <br />
-                  {item.description}
-                </p>
-              </li>
-            ))}
-          </ul>
+          {statusList?.map((item) => (
+            <div className="__element__item" key={item._id}>
+              <p style={{ color: item.color }}>
+                {item.name} <br />
+                {item.description}
+              </p>
+              <IconHover>
+                <TrashIcon
+                  className="icon"
+                  onClick={() => openDelete('status', item._id)}
+                />
+              </IconHover>
+            </div>
+          ))}
         </BoxWithHeader>
         <BoxWithHeader
           title="List Tag"
@@ -220,13 +267,17 @@ const Dashboard = () => {
           handleClickBtn={() => setIsShowAddTag(true)}
           className="__element"
         >
-          <ul>
-            {tags?.map((item) => (
-              <li key={item._id}>
-                <p>{item.title}</p>
-              </li>
-            ))}
-          </ul>
+          {tags?.map((item) => (
+            <div className="__element__item" key={item._id}>
+              <p>{item.title}</p>
+              <IconHover>
+                <TrashIcon
+                  className="icon"
+                  onClick={() => openDelete('tag', item._id)}
+                />
+              </IconHover>
+            </div>
+          ))}
         </BoxWithHeader>
         <BoxWithHeader title="Tiến độ dự án">
           <PieChart width={340} height={300}>
@@ -253,11 +304,7 @@ const Dashboard = () => {
         submitBtn="Add"
         onSubmit={onAddMember}
       >
-        <InputNormal
-          title="Tên thành viên"
-          onChange={handleChangeAdd}
-          value={addMem}
-        />
+        <InputNormal title="Email" onChange={handleChangeAdd} value={addMem} />
       </Modal>
 
       <Modal
@@ -299,6 +346,17 @@ const Dashboard = () => {
           onChange={(e) => setAddTagTitle(e.target.value)}
           value={addTagTitle}
         />
+      </Modal>
+
+      <Modal
+        isShow={isShowDelete.isShow}
+        title={`Xoá ${isShowDelete.type}`}
+        closeBtn="Close"
+        onClose={() => setIsShowDelete({ isShow: false, type: '', id: '' })}
+        submitBtn="Xóa"
+        onSubmit={onDelete}
+      >
+        Bạn có chắc muốn xóa
       </Modal>
     </DashboardWrapper>
   );

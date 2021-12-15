@@ -96,6 +96,12 @@ const GlobalStyle = createGlobalStyle`
         height: 10px;
         border-radius: 50%;
     }
+
+    .icon{
+        width: 16px;
+        height: 16px;
+        fill: ${color('text1')};
+    }
 `;
 
 export const ContainerWrapper = styled.article`

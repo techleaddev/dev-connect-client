@@ -13,6 +13,8 @@ export const PaginationWrapper = styled.div`
     border: 1px solid ${color('border')};
     border-radius: 4px;
     margin: 0 2px;
+    width: 14px;
+    height: 14px;
     cursor: pointer;
     &:hover {
       background-color: ${color('header')};

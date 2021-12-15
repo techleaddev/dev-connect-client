@@ -1,4 +1,5 @@
 import {
+  deleteService,
   getService,
   postService,
   putService,
@@ -42,6 +43,10 @@ export function getProjectMemberApi(id: string) {
 
 export function addMember(email: string, projectId: string) {
   return putService(endpoint + '/addMember', { email, projectId });
+}
+
+export function deleteMemberApi(projectId: string, memberId: string) {
+  return deleteService(endpoint + '/member', { projectId, memberId });
 }
 
 export function addStatusListApi(

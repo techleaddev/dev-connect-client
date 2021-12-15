@@ -22,6 +22,11 @@ export const DashboardWrapper = styled.div`
     .__element {
       max-height: 250px;
       overflow-y: auto;
+
+      &__item{
+        display: flex;
+        justify-content: space-between;
+      }
     }
   }
 `;

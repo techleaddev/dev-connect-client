@@ -104,7 +104,7 @@ export const putService = async (url: string, body: any) => {
   }
 };
 
-export const deleteService = async (url: string) => {
+export const deleteService = async (url: string, body?: any) => {
   try {
     const token = store.getState().auth.token;
 
@@ -117,6 +117,7 @@ export const deleteService = async (url: string) => {
     const response = await axios.delete(`${HOST_API + url}`, {
       headers: headers,
       withCredentials: true,
+      data: body,
     });
     if (response.status >= 200 && response.status <= 210) {
       return response.data;
