@@ -14,6 +14,10 @@ export const GlobalContainerWrapper = styled.div`
   &.flex-body {
     display: flex;
     flex-direction: column;
+
+    .container {
+      width: 100vw;
+    }
   }
 
   .container {
@@ -22,7 +26,6 @@ export const GlobalContainerWrapper = styled.div`
     position: relative;
     overflow-y: auto;
   }
-
 `;
 
 export const MainLoading = styled.div`

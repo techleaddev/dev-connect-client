@@ -165,27 +165,27 @@ const Preferences = () => {
     <PreferencesWrapper>
       <Button title="Go back" onClick={() => history.goBack()} className='goBack_btn' />
       <BoxWithHeader
-        title="Edit Basic Info"
-        btnTitle={editBasic ? 'Save' : 'Edit'}
+        title="Thông tin cơ bản"
+        btnTitle={editBasic ? 'Lưu' : 'Sửa'}
         handleClickBtn={saveBasic}
         className="preferences__item"
       >
         <InputNormal
-          title="first_name"
+          title="Họ"
           name="first_name"
           value={dataBasic?.first_name}
           onChange={onChangeBasic}
           disable={!editBasic}
         />
         <InputNormal
-          title="last_name"
+          title="Tên"
           name="last_name"
           value={dataBasic?.last_name}
           onChange={onChangeBasic}
           disable={!editBasic}
         />
         <InputNormal
-          title="email"
+          title="Email"
           name="email"
           value={dataBasic?.email}
           onChange={onChangeBasic}
@@ -193,49 +193,49 @@ const Preferences = () => {
         />
       </BoxWithHeader>
       <BoxWithHeader
-        title="Do you want to change Password"
+        title="Bạn có muốn thay đổi mật khẩu không ?"
         className="preferences__item"
-        btnTitle="Change Password"
+        btnTitle="Thay đổi"
         handleClickBtn={() => setIsShowChangePw(true)}
       >
         {null}
       </BoxWithHeader>
       <BoxWithHeader
-        title="Edit Not Normal Info"
-        btnTitle={editNormal ? 'Save' : 'Edit'}
+        title="Thông tin bổ sung"
+        btnTitle={editNormal ? 'Lưu' : 'Sửa'}
         handleClickBtn={saveNotNormal}
         className="preferences__item"
       >
         <InputNormal
-          title="company"
+          title="Mô tả"
           name="company"
           value={dataNotNormal.company}
           onChange={onChangeNotNormal}
           disable={!editNormal}
         />
         <InputNormal
-          title="website"
+          title="Website"
           name="website"
           value={dataNotNormal.website}
           onChange={onChangeNotNormal}
           disable={!editNormal}
         />
         <InputNormal
-          title="location"
+          title="Địa chỉ"
           name="location"
           value={dataNotNormal.location}
           onChange={onChangeNotNormal}
           disable={!editNormal}
         />
         <InputNormal
-          title="status"
+          title="Trạng thái"
           name="status"
           value={dataNotNormal.status}
           onChange={onChangeNotNormal}
           disable={!editNormal}
         />
         <InputNormal
-          title="skill"
+          title="Kỹ năng"
           name="skill"
           value={dataNotNormal.skills}
           onChange={onChangeNotNormal}
@@ -249,7 +249,7 @@ const Preferences = () => {
           disable={!editNormal}
         />
       </BoxWithHeader>
-      <BoxWithHeader title="Change Language 👉" className="preferences__item">
+      <BoxWithHeader title="Đổi ngôn ngữ 👉" className="preferences__item">
         <div className="change-langues-option">
           <button onClick={() => onChange('vn')} className="lang_option">
             🇻🇳 Tiếng Việt
@@ -261,7 +261,7 @@ const Preferences = () => {
       </BoxWithHeader>
 
       <BoxWithHeader
-        title="Navigation theme"
+        title="Đổi chủ đề"
         className="preferences__item listTheme"
       >
         {AllTheme.map((item) => (

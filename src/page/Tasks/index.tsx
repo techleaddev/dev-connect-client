@@ -10,7 +10,10 @@ import { ITaskRes } from 'src/services/tasks/types';
 import AddTaskModal from './components/AddTaskModal';
 import { TaskScreenSwapper } from './style';
 
-const TaskScreen: FunctionComponent = () => {
+interface IProps {
+  showHeader?: boolean;
+}
+const TaskScreen: FunctionComponent<IProps> = ({ showHeader = true }) => {
   const projectId = useAppSelector((state) => state.app.projectId);
   const [isShowAdd, setIsShowAdd] = useState(false);
   const [listTask, setListTask] = useState<ITaskRes[]>([]);
@@ -29,7 +32,18 @@ const TaskScreen: FunctionComponent = () => {
 
   return (
     <TaskScreenSwapper>
-      <HeaderTool handleAddNew={() => setIsShowAdd(true)} />
+      {showHeader && <HeaderTool handleAddNew={() => setIsShowAdd(true)} />}
+      <Box className="taskListItem_box no_border">
+        <div className="taskListItem">
+          <p>#ID</p>
+          <p>Tiêu đề</p>
+          <p>Người phụ trách</p>
+          <p>Danh mục</p>
+          <p>Thẻ</p>
+          <p>Mô tả</p>
+          <p>Thời Hạn</p>
+        </div>
+      </Box>
       {!!listTask.length &&
         listTask.map((item) => (
           <Box key={`listTask_${item._id}`} className="taskListItem_box">
@@ -37,10 +51,12 @@ const TaskScreen: FunctionComponent = () => {
               className="taskListItem"
               style={{ borderLeftColor: item.status.color }}
             >
+              <i>#{item._id.slice(-5)}</i>
               <p>{item.title}</p>
               <p>
                 {item.assignee.first_name} {item.assignee.last_name}
               </p>
+              <p>{item.unitId.title}</p>
               <p>
                 {item.tags.map((tag) => (
                   <i className="tag">{tag.title}</i>

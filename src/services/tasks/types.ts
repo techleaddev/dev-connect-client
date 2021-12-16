@@ -11,7 +11,7 @@ export interface ITask {
 
 export interface ITaskRes {
   _id: string;
-  unitId: string;
+  unitId: { _id: string; title: string };
   title: string;
   description: string;
   tags: Array<{ _id: string; title: string }>;

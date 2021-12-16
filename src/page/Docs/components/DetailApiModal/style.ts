@@ -43,18 +43,36 @@ export const CodeSnippetWrapper = styled.div`
 export const HistoryTabWrapper = styled.div`
   padding: 8px;
   font-size: 14px;
-  .history{
+  .history {
     padding: 8px;
     margin: 8px;
 
-    b:hover{
+    b:hover {
       text-decoration: underline;
     }
-    p{
+    p {
       margin: 4px 0;
     }
-    .form{
+    .form {
       text-decoration: line-through;
+    }
+  }
+`;
+
+export const DetailTabWrapper = styled.div`
+  padding: 8px;
+`;
+
+export const TestTabWrapper = styled.div`
+  padding: 16px;
+  display: grid;
+  gap: 16px;
+  .test_tab__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    input {
+      width: 400px;
     }
   }
 `;

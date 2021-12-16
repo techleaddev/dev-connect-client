@@ -10,17 +10,23 @@ export const TaskScreenSwapper = styled.div`
       padding: 16px;
       border-radius: 4px;
       display: grid;
-      grid-template-columns: 160px 160px 0.5fr 1fr 100px;
+      grid-template-columns: 68px 160px 160px 120px 0.5fr 1fr 100px;
       border-left: 4px solid;
       p {
         margin: 0;
       }
-      .tag{
+      .tag {
         margin-right: 8px;
         border: 1px solid ${color('header')};
         background-color: ${color('background1')};
         padding: 4px;
         border-radius: 8px;
+      }
+    }
+
+    &.no_border {
+      .taskListItem {
+        border: hidden;
       }
     }
   }

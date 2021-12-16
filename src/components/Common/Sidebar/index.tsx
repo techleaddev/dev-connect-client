@@ -5,14 +5,14 @@ import { ReactComponent as ConnectIcon } from 'src/assets/icons/connect.svg';
 import { ReactComponent as ListIcon } from 'src/assets/icons/list.svg';
 import { ReactComponent as ChatIcon } from 'src/assets/icons/chat.svg';
 import { ReactComponent as TodoIcon } from 'src/assets/icons/check-box.svg';
-import { ReactComponent as DocIcon } from 'src/assets/icons/file.svg';
+// import { ReactComponent as DocIcon } from 'src/assets/icons/file.svg';
 
 import { SidebarWrapper } from './style';
 const Sidebar = () => {
   return (
     <SidebarWrapper>
       <NavLink to={ROUTER_NAME.dashboard.path} className="sidebar-menu" >
-        <HomeIcon />
+        <HomeIcon title='Trang chủ' />
       </NavLink>
       <NavLink to={ROUTER_NAME.unit.path} className="sidebar-menu">
         <ConnectIcon />

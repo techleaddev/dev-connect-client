@@ -1,7 +1,6 @@
 import React, { FunctionComponent, memo, useMemo, useState } from 'react';
 import { ReactComponent as ListIcon } from 'src/assets/icons/list.svg';
 import { ReactComponent as ChatIcon } from 'src/assets/icons/chat.svg';
-import { ReactComponent as BellIcon } from 'src/assets/icons/bell.svg';
 // import { METHOD_API } from 'src/lib/constants';
 import { APIBoxWrapper } from './style';
 import CopyField from 'src/components/Base/CopyField';
@@ -65,9 +64,6 @@ const APIBox: FunctionComponent<IProps> = memo(
 
         <IconHover>
           <ListIcon />
-        </IconHover>
-        <IconHover>
-          <BellIcon />
         </IconHover>
         {listMemberId.includes(userId) && (
           <IconHover>

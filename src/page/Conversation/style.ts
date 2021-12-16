@@ -1,3 +1,4 @@
+import { color } from 'src/lib/theme/mixin';
 import styled from 'styled-components';
 
 export const ConversationsWrapper = styled.div`
@@ -19,19 +20,19 @@ export const ConversationsWrapper = styled.div`
 `;
 
 export const UserChatListWrapper = styled.div`
-  background-color: #303841;
+  background-color: ${color('background1')};
   color: #a6b0cf;
   padding: 1em;
   .cs-search-bar {
     padding: 0.8em;
-    background-color: #36414a;
+    background-color: ${color('background2')};
     color: #9aa1b9;
     display: flex;
     align-items: center;
     line-height: 1;
     border-radius: 8px;
     input {
-      background-color: #36414a;
+      background-color: ${color('background2')};
       color: #9aa1b9;
       border: hidden;
       outline: none;
@@ -77,10 +78,10 @@ export const UserChatListWrapper = styled.div`
         font-size: 15px;
       }
       &.selected {
-        background-color: #36414a;
+        background-color: ${color('background2')};
       }
       &:hover {
-        background-color: #36414a;
+        background-color: ${color('background2')};
       }
     }
   }
@@ -89,7 +90,7 @@ export const UserChatListWrapper = styled.div`
   }
 `;
 export const ChatContainerWrapper = styled.div`
-  background-color: #262e35;
+  background-color: ${color('background2')};
   display: flex;
   flex-direction: column;
   color: #a6b0cf;
@@ -97,7 +98,7 @@ export const ChatContainerWrapper = styled.div`
   overflow: hidden;
   .cs-chat-box-head {
     // flex: 1;
-    border-bottom: 1px solid #36404a;
+    border-bottom: 1px solid ${color('border')};
     display: flex;
     flex-direction: row;
     padding: 0.8em;
