@@ -26,6 +26,7 @@ export const HeaderToolWrapper = styled.div`
       left: 12px;
       width: 22px;
       height: 22px;
+      fill: ${color('text1')};
     }
 
     &__search {

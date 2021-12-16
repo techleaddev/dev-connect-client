@@ -23,10 +23,11 @@ const IconHoverWrapper = styled.div`
 
 interface IProps {
   children: ReactNode;
+  onClick?: () => void;
 }
 
-const IconHover: FunctionComponent<IProps> = ({ children }) => {
-  return <IconHoverWrapper>{children}</IconHoverWrapper>;
+const IconHover: FunctionComponent<IProps> = ({ children, onClick }) => {
+  return <IconHoverWrapper onClick={onClick}>{children}</IconHoverWrapper>;
 };
 
 export default IconHover;

@@ -7,13 +7,20 @@ export const TaskScreenSwapper = styled.div`
     margin: 16px;
     text-align: start;
     .taskListItem {
-      padding: 16px;
+      padding: 8px;
       border-radius: 4px;
       display: grid;
-      grid-template-columns: 68px 160px 160px 120px 0.5fr 1fr 100px;
+      grid-template-columns: 68px 160px 160px 120px 0.5fr 1fr 100px 64px;
       border-left: 4px solid;
+      align-items: center;
       p {
         margin: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .listTags {
+        display: block;
       }
       .tag {
         margin-right: 8px;
@@ -21,6 +28,12 @@ export const TaskScreenSwapper = styled.div`
         background-color: ${color('background1')};
         padding: 4px;
         border-radius: 8px;
+        display: inline-block;
+      }
+
+      .editView {
+        display: flex;
+        justify-content: space-between;
       }
     }
 

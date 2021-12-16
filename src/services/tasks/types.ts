@@ -9,6 +9,11 @@ export interface ITask {
   status: string;
 }
 
+// export type ITaskDetailRes = Omit<ITask, 'unitId'> & {
+//   unitId: {
+//     _id: string,
+//   }
+// }
 export interface ITaskRes {
   _id: string;
   unitId: { _id: string; title: string };

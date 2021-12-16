@@ -55,7 +55,7 @@ const SelectField: FunctionComponent<IProps> = ({
 export default SelectField;
 
 interface ISelectFieldNormalProps {
-  value: OptionTypeBase;
+  value?: OptionTypeBase;
   onChange(value: OptionTypeBase): void;
 }
 export const SelectFieldNormal: FunctionComponent<
