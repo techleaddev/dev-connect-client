@@ -27,8 +27,6 @@ export const DetailApiModalWrapper = styled.div`
 `;
 
 export const CodeSnippetWrapper = styled.div`
-  padding: 16px;
-
   .copy-zone {
     background-color: ${color('header')};
     margin-top: 16px;
@@ -41,10 +39,8 @@ export const CodeSnippetWrapper = styled.div`
 `;
 
 export const HistoryTabWrapper = styled.div`
-  padding: 8px;
   font-size: 14px;
   .history {
-    padding: 8px;
     margin: 8px;
 
     b:hover {
@@ -60,11 +56,9 @@ export const HistoryTabWrapper = styled.div`
 `;
 
 export const DetailTabWrapper = styled.div`
-  padding: 8px;
 `;
 
 export const TestTabWrapper = styled.div`
-  padding: 16px;
   display: grid;
   gap: 16px;
   .test_tab__header {

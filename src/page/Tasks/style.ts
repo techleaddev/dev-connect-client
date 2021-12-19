@@ -22,14 +22,6 @@ export const TaskScreenSwapper = styled.div`
       .listTags {
         display: block;
       }
-      .tag {
-        margin-right: 8px;
-        border: 1px solid ${color('header')};
-        background-color: ${color('background1')};
-        padding: 4px;
-        border-radius: 8px;
-        display: inline-block;
-      }
 
       .editView {
         display: flex;
@@ -54,5 +46,33 @@ export const AddTaskModalWrapper = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 16px;
+  }
+`;
+
+export const DetailTaskModalWrapper = styled.div`
+  .dt_edit__btn {
+    width: 60px;
+    justify-self: flex-end;
+    text-align: center;
+  }
+  .verticalTab__tab {
+    width: 60vw;
+    height: calc(70vh - 30px);
+  }
+`;
+
+export const DetailTabWrapper = styled.div`
+  display: grid;
+  gap: 16px;
+
+  .dt_element {
+    padding: 8px;
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 8px;
+    h4,
+    p {
+      margin: 0;
+    }
   }
 `;

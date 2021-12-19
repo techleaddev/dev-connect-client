@@ -16,6 +16,7 @@ import { ReactComponent as TrashIcon } from 'src/assets/icons/trash.svg';
 import { TaskScreenSwapper } from './style';
 import { uniqueId } from 'lodash';
 import Modal from 'src/components/Base/Modal';
+import DetailTaskModal from './components/DetailTaskModal';
 
 interface IProps {
   showHeader?: boolean;
@@ -25,6 +26,10 @@ const TaskScreen: FunctionComponent<IProps> = ({ showHeader = true }) => {
   const [isShowAdd, setIsShowAdd] = useState(false);
   const [listTask, setListTask] = useState<ITaskRes[]>([]);
   const [editId, setEditId] = useState('');
+  const [showDetail, setShowDetail] = useState({
+    isShow: false,
+    id: '',
+  });
   const [deleteTask, setDeleteTask] = useState({
     isShow: false,
     id: '',
@@ -72,6 +77,13 @@ const TaskScreen: FunctionComponent<IProps> = ({ showHeader = true }) => {
     }
   };
 
+  const onViewDetail = (id: string) => {
+    setShowDetail({
+      isShow: true,
+      id: id,
+    });
+  };
+
   return (
     <TaskScreenSwapper>
       {showHeader && (
@@ -95,7 +107,11 @@ const TaskScreen: FunctionComponent<IProps> = ({ showHeader = true }) => {
       </Box>
       {!!listTask.length &&
         listTask.map((item) => (
-          <Box key={`listTask_${item._id}`} className="taskListItem_box">
+          <Box
+            key={`listTask_${item._id}`}
+            className="taskListItem_box"
+            onClickBox={() => onViewDetail(item._id)}
+          >
             <div
               className="taskListItem"
               style={{ borderLeftColor: item.status.color }}
@@ -147,6 +163,12 @@ const TaskScreen: FunctionComponent<IProps> = ({ showHeader = true }) => {
       >
         Bạn có chắc muốn xóa task #{deleteTask.id.slice(-5)}
       </Modal>
+
+      <DetailTaskModal
+        isShow={showDetail.isShow}
+        taskId={showDetail.id}
+        onClose={() => setShowDetail({ id: '', isShow: false })}
+      />
     </TaskScreenSwapper>
   );
 };

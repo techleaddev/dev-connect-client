@@ -102,6 +102,15 @@ const GlobalStyle = createGlobalStyle`
         height: 16px;
         fill: ${color('text1')};
     }
+
+    .tag {
+        margin-right: 8px;
+        border: 1px solid ${color('header')};
+        background-color: ${color('background1')};
+        padding: 4px;
+        border-radius: 8px;
+        display: inline-block;
+      }
 `;
 
 export const ContainerWrapper = styled.article`

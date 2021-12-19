@@ -1,9 +1,8 @@
 const welcomeTranslate = {
-  add: "Tạo mới dự án",
+  add: 'Tạo mới dự án',
   name: 'Tên dự án',
   des: 'Mô tả dự án',
   addMember: 'Thêm thành viên',
-  
 };
 
 export type WelcomeTranslateType = typeof welcomeTranslate;

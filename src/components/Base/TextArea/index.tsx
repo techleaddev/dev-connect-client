@@ -1,4 +1,5 @@
-import { ChangeEvent, FunctionComponent, memo } from 'react';
+import clsx from 'clsx';
+import { ChangeEvent, FunctionComponent, memo, useEffect, useRef } from 'react';
 import { Controller } from 'react-hook-form';
 import { IFromProps } from '../@types/formTypes';
 import { TextAreaContain, TextAreaWrapper } from './styled';
@@ -53,6 +54,7 @@ type INormalProps = {
   onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void;
   value: string;
   disable?: boolean;
+  fullSize?: boolean;
 };
 export const TextAreaNormal: FunctionComponent<IComponentProps & INormalProps> =
   ({
@@ -64,11 +66,24 @@ export const TextAreaNormal: FunctionComponent<IComponentProps & INormalProps> =
     name,
     value,
     disable,
+    fullSize,
   }) => {
+    const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+    useEffect(() => {
+      if (fullSize) {
+        if (textareaRef?.current) {
+          textareaRef.current.style.height = '0px';
+          const scrollHeight = textareaRef.current.scrollHeight;
+          textareaRef.current.style.height = scrollHeight + 'px';
+        }
+      }
+    }, [fullSize, value]);
     return (
       <TextAreaContain className={className}>
         {!!title && <label>{title}</label>}
         <TextAreaWrapper
+          ref={textareaRef}
           value={value}
           name={name}
           placeholder={placeholder}
