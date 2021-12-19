@@ -1,5 +1,10 @@
-import { deleteService, getService, postService, putService } from 'src/lib/helpers/connectApi';
-import { ITask } from './types';
+import {
+  deleteService,
+  getService,
+  postService,
+  putService,
+} from 'src/lib/helpers/connectApi';
+import { ITask, ITaskHistory } from './types';
 const endpoint = '/tasks';
 
 export function createTaskApi(
@@ -21,13 +26,14 @@ export function getTaskDetailApi(taskId: string): Promise<ITask> {
   return getService(`${endpoint}/${taskId}`);
 }
 
+export function getHistoryDetailApi(taskId: string): Promise<ITaskHistory[]> {
+  return getService(`${endpoint}/history/${taskId}`);
+}
+
 export function deleteTaskApi(taskId: string): Promise<ITask> {
   return deleteService(`${endpoint}/${taskId}`);
 }
 
-export function editTaskApi(
-  id: string,
-  taskData: Omit<ITask, '_id'>
-) {
+export function editTaskApi(id: string, taskData: Omit<ITask, '_id'>) {
   return putService(endpoint, { id, ...taskData });
 }
