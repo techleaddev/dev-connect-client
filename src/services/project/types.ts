@@ -14,7 +14,7 @@ export interface IProjectsListRes {
 export interface IProjectState {
   loading: boolean;
   error: string;
-  info?: IProjectInfoRes;
+  info: IProjectInfoRes;
   statusList: ITaskStatus[];
   tags: ITagTask[]
 }

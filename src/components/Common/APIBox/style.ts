@@ -8,7 +8,7 @@ export const APIBoxWrapper = styled.div`
   box-shadow: inset -1px -1px 0px ${color('shadow')};
   color: ${color('text1')};
   display: grid;
-  grid-template-columns: 1fr 150px 200px repeat(3, 32px);
+  grid-template-columns: 1fr 150px 200px repeat(2, 32px);
   align-items: center;
   justify-items: center;
   border-left: 6px solid;

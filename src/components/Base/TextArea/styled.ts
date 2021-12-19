@@ -23,15 +23,20 @@ export const TextAreaWrapper = styled.textarea`
   box-sizing: border-box;
   width: 100%;
   height: 100px;
-  border-radius: 4px;
   border: 1px solid white;
   padding: 10px 14px;
   margin-bottom: 4px;
   font-size: 14px;
   outline: none;
   border: ${color('borderInput')} 1px solid;
-  border-radius: 8px;
+  border-radius: 4px;
   padding: 14px;
   background-color: ${color('background2')};
   color: ${color('text1')};
+  resize: none;
+  overflow: auto;
+
+  &:disabled {
+    opacity: 0.5;
+  }
 `;

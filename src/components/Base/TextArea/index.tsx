@@ -1,7 +1,8 @@
-import { ChangeEvent, FunctionComponent, memo } from "react";
-import { Controller } from "react-hook-form";
-import { IFromProps } from "../@types/formTypes";
-import { TextAreaContain, TextAreaWrapper } from "./styled";
+import clsx from 'clsx';
+import { ChangeEvent, FunctionComponent, memo, useEffect, useRef } from 'react';
+import { Controller } from 'react-hook-form';
+import { IFromProps } from '../@types/formTypes';
+import { TextAreaContain, TextAreaWrapper } from './styled';
 
 interface IComponentProps {
   error?: string;
@@ -17,7 +18,7 @@ const TextArea: FunctionComponent<IProps> = memo(
     name,
     control,
     rules,
-    defaultValue = "",
+    defaultValue = '',
     error,
     placeholder,
     className,
@@ -50,19 +51,44 @@ export default TextArea;
 
 type INormalProps = {
   name?: string;
-  onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
+  onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void;
   value: string;
+  disable?: boolean;
+  fullSize?: boolean;
 };
 export const TextAreaNormal: FunctionComponent<IComponentProps & INormalProps> =
-  ({ className, title, placeholder, error, onChange, name, value }) => {
+  ({
+    className,
+    title,
+    placeholder,
+    error,
+    onChange,
+    name,
+    value,
+    disable,
+    fullSize,
+  }) => {
+    const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+    useEffect(() => {
+      if (fullSize) {
+        if (textareaRef?.current) {
+          textareaRef.current.style.height = '0px';
+          const scrollHeight = textareaRef.current.scrollHeight;
+          textareaRef.current.style.height = scrollHeight + 'px';
+        }
+      }
+    }, [fullSize, value]);
     return (
       <TextAreaContain className={className}>
         {!!title && <label>{title}</label>}
         <TextAreaWrapper
+          ref={textareaRef}
           value={value}
           name={name}
           placeholder={placeholder}
           onChange={onChange}
+          disabled={disable}
         />
         {error && <i>{error}</i>}
       </TextAreaContain>

@@ -8,3 +8,23 @@ export interface ITask {
   deadline?: Date;
   status: string;
 }
+
+// export type ITaskDetailRes = Omit<ITask, 'unitId'> & {
+//   unitId: {
+//     _id: string,
+//   }
+// }
+export interface ITaskRes {
+  _id: string;
+  unitId: { _id: string; title: string };
+  title: string;
+  description: string;
+  tags: Array<{ _id: string; title: string }>;
+  assignee: { _id: string; first_name: string; last_name: string };
+  deadline: Date;
+  status: {
+    _id: string;
+    name: string;
+    color: string;
+  };
+}

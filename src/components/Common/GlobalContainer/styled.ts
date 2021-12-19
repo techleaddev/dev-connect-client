@@ -14,6 +14,10 @@ export const GlobalContainerWrapper = styled.div`
   &.flex-body {
     display: flex;
     flex-direction: column;
+
+    .container {
+      width: 100vw;
+    }
   }
 
   .container {
@@ -21,11 +25,6 @@ export const GlobalContainerWrapper = styled.div`
     width: calc(100vw - 56px);
     position: relative;
     overflow-y: auto;
-  }
-
-  svg {
-    height: 14px;
-    width: 14px;
   }
 `;
 

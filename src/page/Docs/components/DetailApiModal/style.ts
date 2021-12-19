@@ -27,8 +27,6 @@ export const DetailApiModalWrapper = styled.div`
 `;
 
 export const CodeSnippetWrapper = styled.div`
-  padding: 16px;
-
   .copy-zone {
     background-color: ${color('header')};
     margin-top: 16px;
@@ -41,20 +39,34 @@ export const CodeSnippetWrapper = styled.div`
 `;
 
 export const HistoryTabWrapper = styled.div`
-  padding: 8px;
   font-size: 14px;
-  .history{
-    padding: 8px;
+  .history {
     margin: 8px;
 
-    b:hover{
+    b:hover {
       text-decoration: underline;
     }
-    p{
+    p {
       margin: 4px 0;
     }
-    .form{
+    .form {
       text-decoration: line-through;
+    }
+  }
+`;
+
+export const DetailTabWrapper = styled.div`
+`;
+
+export const TestTabWrapper = styled.div`
+  display: grid;
+  gap: 16px;
+  .test_tab__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    input {
+      width: 400px;
     }
   }
 `;

@@ -8,6 +8,16 @@ const initialState: IProjectState = {
   loading: false,
   error: '',
   statusList: [],
+  info: {
+    _id: '',
+    createdAt: '',
+    description: '',
+    name: '',
+    originator: {
+      id: '',
+      name: '',
+    },
+  },
   tags: [],
 };
 export const getInfoService = createAsyncThunk(

@@ -1,4 +1,5 @@
 import {
+  deleteService,
   getService,
   postService,
   putService,
@@ -13,6 +14,13 @@ import {
 const endpoint = '/project';
 export const createProjectApi = (req: ICreateProjectReq) => {
   return postService(endpoint, req);
+};
+
+export const editProjectApi = (
+  projectId: string,
+  data: { name: string; description: string; readme: string }
+) => {
+  return putService(`${endpoint}/${projectId}`, data);
 };
 
 export function getProjectsApi(): Promise<IProjectsListRes[]> {
@@ -35,6 +43,10 @@ export function getProjectMemberApi(id: string) {
 
 export function addMember(email: string, projectId: string) {
   return putService(endpoint + '/addMember', { email, projectId });
+}
+
+export function deleteMemberApi(projectId: string, memberId: string) {
+  return deleteService(endpoint + '/member', { projectId, memberId });
 }
 
 export function addStatusListApi(

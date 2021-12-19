@@ -74,7 +74,19 @@ const DocsScreen = () => {
         handleAddNew={() => setIsShowAdd(true)}
         onSearch={(searchKey) => setSearchKey(searchKey)}
       />
+
       <div className="docScreen__list_doc">
+        <Box className="docScreen__list_doc__header">
+          <div>
+            <span>Tiêu đề</span>
+            <span>Host</span>
+            <span>Endpoint</span>
+          </div>
+
+          <span>Tiến độ</span>
+          <span>Thành viên</span>
+          <div></div>
+        </Box>
         {listDocs.length ? (
           listDocs.map((item) => (
             <APIBox

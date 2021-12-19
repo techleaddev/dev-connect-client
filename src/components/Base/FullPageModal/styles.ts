@@ -10,7 +10,9 @@ export const FullPageModalWrapper = styled.div`
   z-index: 20;
   top: 0;
   display: none;
-
+  svg {
+    fill: ${color('text1')};
+  }
   &.show {
     display: flex;
     flex-direction: column;

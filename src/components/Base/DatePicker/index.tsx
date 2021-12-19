@@ -5,12 +5,22 @@ interface IProps {
   value?: Date;
   onChange: (value: Date) => void;
   title: string;
+  disabled?: boolean;
 }
-const DatePicker: FunctionComponent<IProps> = ({ value, onChange, title }) => {
+const DatePicker: FunctionComponent<IProps> = ({
+  value,
+  onChange,
+  title,
+  disabled,
+}) => {
   return (
     <DatePickerWrapper>
       <span>{title}</span>
-      <ReactDatePicker selected={value} onChange={onChange} />
+      <ReactDatePicker
+        selected={value}
+        onChange={onChange}
+        disabled={disabled}
+      />
     </DatePickerWrapper>
   );
 };

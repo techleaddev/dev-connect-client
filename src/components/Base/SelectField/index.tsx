@@ -55,8 +55,9 @@ const SelectField: FunctionComponent<IProps> = ({
 export default SelectField;
 
 interface ISelectFieldNormalProps {
-  value: OptionTypeBase;
+  value?: OptionTypeBase;
   onChange(value: OptionTypeBase): void;
+  disable?:boolean;
 }
 export const SelectFieldNormal: FunctionComponent<
   IProps & ISelectFieldNormalProps
@@ -70,6 +71,7 @@ export const SelectFieldNormal: FunctionComponent<
   className,
   title,
   isMulti = false,
+  disable,
   closeMenuOnSelect = true,
 }) => {
   return (
@@ -82,6 +84,7 @@ export const SelectFieldNormal: FunctionComponent<
         options={options}
         placeholder={placeholder}
         isMulti={isMulti}
+        isDisabled={disable}
         closeMenuOnSelect={closeMenuOnSelect}
         styles={{
           option: (styles) => ({ ...styles, color: '#000' }),

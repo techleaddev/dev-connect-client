@@ -53,7 +53,7 @@ export default InputField;
 type IInputNormalProps = IComponentProps & {
   value: string;
   name?: string;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   onKeyPress?: (e: KeyboardEvent<HTMLInputElement>) => void;
   disable?: boolean;
 };

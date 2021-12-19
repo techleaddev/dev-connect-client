@@ -13,6 +13,9 @@ export const VerticalTabWrapper = styled.div`
       background-color: ${color('background1')};
       height: 100%;
       overflow-y: auto;
+      padding: 16px;
+      max-height: calc(70vh - 30px);
+      overflow-y: auto;
     }
     &__menu {
       padding: 12px 6px;

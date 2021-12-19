@@ -1,4 +1,4 @@
-import  { FunctionComponent, useMemo } from 'react';
+import { FunctionComponent, useMemo } from 'react';
 import CopyField from 'src/components/Base/CopyField';
 import Modal from 'src/components/Base/Modal';
 import VerticalTab from 'src/components/Base/VerticalTab';
@@ -7,14 +7,15 @@ import { ReactComponent as VectorIcon } from 'src/assets/icons/vector.svg';
 import { ReactComponent as CodeIcon } from 'src/assets/icons/code.svg';
 import { ReactComponent as ListIcon } from 'src/assets/icons/list.svg';
 import { ReactComponent as LabIcon } from 'src/assets/icons/lab.svg';
-import { ReactComponent as DocumentIcon } from 'src/assets/icons/document.svg';
 import { ReactComponent as PeopleIcon } from 'src/assets/icons/people.svg';
-import { ReactComponent as BellIcon } from 'src/assets/icons/bell.svg';
 import { ReactComponent as TimeIcon } from 'src/assets/icons/time-past.svg';
 import { DetailApiModalWrapper } from './style';
 import { DocTranslateKeyType } from 'src/lib/translations/vn/doc';
 import CodeSnippet from './CodeSnippet';
 import HistoryTab from './HistoryTab';
+import DetailTab from './DetailTab';
+import TestTab from './TestTab';
+import TaskScreen from 'src/page/Tasks';
 interface IProps {
   isShow: boolean;
   onClose: () => void;
@@ -30,12 +31,17 @@ const DetailApiModal: FunctionComponent<IProps> = ({
 }) => {
   const TAB = useMemo(
     () => [
-      { key: 1, tab: <h1>hello</h1> },
+      {
+        key: 1,
+        tab: <DetailTab />,
+      },
       {
         key: 2,
         tab: <CodeSnippet {...data} />,
       },
-      {key: 8, tab: <HistoryTab docId={data._id} />}
+      { key: 3, tab: <TestTab /> },
+      { key: 4, tab: <TaskScreen showHeader={false} /> },
+      { key: 6, tab: <HistoryTab docId={data._id} /> },
     ],
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [data]
@@ -47,10 +53,8 @@ const DetailApiModal: FunctionComponent<IProps> = ({
       { key: 2, label: words('code'), icon: <CodeIcon /> },
       { key: 3, label: words('lab'), icon: <LabIcon /> },
       { key: 4, label: words('tasks'), icon: <ListIcon /> },
-      { key: 5, label: words('document'), icon: <DocumentIcon /> },
-      { key: 6, label: words('members'), icon: <PeopleIcon /> },
-      { key: 7, label: words('notification'), icon: <BellIcon /> },
-      { key: 8, label: words('history'), icon: <TimeIcon /> },
+      { key: 5, label: words('members'), icon: <PeopleIcon /> },
+      { key: 6, label: words('history'), icon: <TimeIcon /> },
     ],
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
