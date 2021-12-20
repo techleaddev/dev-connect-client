@@ -14,14 +14,27 @@ const ListAvt: FunctionComponent<IProps> = ({ people }) => {
     <ListAvtWrapper>
       {people.slice(0, 3).map((item, key: number) => {
         if (item.avt) {
-          return <img src={item.avt} alt="avt" className="avt_mem" key={`avt_mem_${key}`} />;
+          return (
+            <img
+              src={item.avt}
+              alt="avt"
+              className="avt_mem"
+              key={`avt_mem_${key}`}
+            />
+          );
         } else {
-          return <div className="avt_mem"  key={`avt_mem_${key}`}>{item.name.slice(0, 1)}</div>;
+          return (
+            <div className="avt_mem" key={`avt_mem_${key}`}>
+              {item.name.slice(0, 1)}
+            </div>
+          );
         }
       })}
-      <div className="avt_mem">
-        <DotsIcon />
-      </div>
+      {people.length > 3 && (
+        <div className="avt_mem">
+          <DotsIcon />
+        </div>
+      )}
     </ListAvtWrapper>
   );
 };

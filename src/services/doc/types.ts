@@ -44,13 +44,18 @@ export default interface IDoc {
     id_member: string;
     name: string;
   }>;
-  extension: string[];
 }
 
 export type ICreateDocReq = {
   docData: Omit<IDoc, '_id' | 'status' | 'extension'>;
   projectId: string;
 };
+
+export type IDocEditData = Omit<IDoc, '_id' | 'projectId' | 'members'>;
+export interface IEditDocReq {
+  docId: string;
+  data: IDocEditData;
+}
 
 export interface IDocHistory {
   author: {

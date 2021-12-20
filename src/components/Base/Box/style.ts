@@ -21,7 +21,8 @@ export const BoxWrapper = styled.div`
     h4 {
       margin: 0;
       margin-bottom: 8px;
-      font-size: 14px;
+      font-size: 16px;
+      font-weight: bold;
     }
   }
 `;
