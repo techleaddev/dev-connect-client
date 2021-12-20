@@ -62,8 +62,10 @@ const DetailTaskModal: FunctionComponent<IProps> = memo(
       []
     );
     const getTaskDetail = useCallback(async () => {
-      const data = await getTaskDetailApi(taskId || '');
-      setDataDetail(data);
+      if (taskId) {
+        const data = await getTaskDetailApi(taskId || '');
+        setDataDetail(data);
+      }
     }, [taskId]);
 
     useEffect(() => {
