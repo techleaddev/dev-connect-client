@@ -36,3 +36,10 @@ export interface IGetChatFromDocRes {
   listChat: IConversationInfo[];
   newChat: IConversationInfo;
 }
+
+export interface ICreateChatroomReq {
+  projectId: string;
+  member?: string[];
+  all?: boolean;
+  name?: string;
+} 

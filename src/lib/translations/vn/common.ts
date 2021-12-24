@@ -7,7 +7,9 @@ const commonTranslate = {
   preferences: 'Tùy chọn',
   logout: 'Đăng xuất',
   dashboard: 'Chung',
-  filter: 'Bộ lọc'
+  filter: 'Bộ lọc',
+  project: 'Dự án',
+  snippet: 'Code mẫu',
 };
 
 export type CommonTranslateType = typeof commonTranslate;

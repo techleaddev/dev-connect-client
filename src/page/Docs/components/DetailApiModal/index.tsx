@@ -16,6 +16,7 @@ import HistoryTab from './HistoryTab';
 import DetailTab from './DetailTab';
 import TestTab from './TestTab';
 import TaskScreen from 'src/page/Tasks';
+import MemberTab from './MemberTab';
 interface IProps {
   isShow: boolean;
   onClose: () => void;
@@ -40,7 +41,8 @@ const DetailApiModal: FunctionComponent<IProps> = ({
         tab: <CodeSnippet {...data} />,
       },
       { key: 3, tab: <TestTab /> },
-      { key: 4, tab: <TaskScreen showHeader={false} /> },
+      { key: 4, tab: <TaskScreen showHeader={false} docId={data._id} /> },
+      { key: 5, tab: <MemberTab docId={data._id} /> },
       { key: 6, tab: <HistoryTab docId={data._id} /> },
     ],
     // eslint-disable-next-line react-hooks/exhaustive-deps

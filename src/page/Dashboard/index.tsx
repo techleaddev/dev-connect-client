@@ -25,6 +25,7 @@ import { ReactComponent as TrashIcon } from 'src/assets/icons/trash.svg';
 
 import { PieChart, Pie, Tooltip } from 'recharts';
 import IconHover from 'src/components/Base/IconHover';
+import ListMember from 'src/components/Common/ListMember';
 const data01 = [
   { name: 'Group A', value: 400 },
   { name: 'Group B', value: 300 },
@@ -222,24 +223,11 @@ const Dashboard = () => {
       </BoxWithHeader>
 
       <div className="dashboardSetting">
-        <BoxWithHeader
-          title="List member"
-          btnTitle="Thêm thành viên"
-          handleClickBtn={() => setIsShowAddMember(true)}
-          className="__element"
-        >
-          {projectInfo?.members?.map((item) => (
-            <div className="__element__item" key={`member__${item.member_id}`}>
-              <span>{item.name}</span>
-              <IconHover>
-                <TrashIcon
-                  className="icon"
-                  onClick={() => openDelete('member', item.member_id)}
-                />
-              </IconHover>
-            </div>
-          ))}
-        </BoxWithHeader>
+        <ListMember
+          members={projectInfo?.members || []}
+          handleDelete={(id) => openDelete('member', id)}
+          handleShowAdd={() => setIsShowAddMember(true)}
+        />
         <BoxWithHeader
           title="List Status"
           btnTitle="Thêm status"

@@ -5,15 +5,18 @@ import { ReactComponent as ConnectIcon } from 'src/assets/icons/connect.svg';
 import Skeleton from 'react-loading-skeleton';
 import { IConversationInfo } from 'src/services/chat/types';
 import { UserChatListWrapper } from '../style';
+import Button from 'src/components/Base/Button';
 interface IProps {
   users: IConversationInfo[];
   conversationId: string;
   handleUser: (i: any) => void;
+  openAddChat(): void;
 }
 const UsersList: FunctionComponent<IProps> = ({
   users,
   conversationId,
   handleUser,
+  openAddChat,
 }) => {
   return (
     <UserChatListWrapper>
@@ -47,6 +50,7 @@ const UsersList: FunctionComponent<IProps> = ({
           <Skeleton count={10} />
         )}
       </div>
+      <Button title="Create conversation" onClick={openAddChat} className='addChatBtn' />
     </UserChatListWrapper>
   );
 };

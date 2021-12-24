@@ -1,4 +1,3 @@
-import clsx from 'clsx';
 import { ChangeEvent, FunctionComponent, memo, useEffect, useRef } from 'react';
 import { Controller } from 'react-hook-form';
 import { IFromProps } from '../@types/formTypes';

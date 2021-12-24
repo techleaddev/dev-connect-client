@@ -1,3 +1,4 @@
+import Modal from 'src/components/Base/Modal';
 import { color } from 'src/lib/theme/mixin';
 import styled from 'styled-components';
 
@@ -12,7 +13,7 @@ export const ConversationsWrapper = styled.div`
     right: 8px;
     bottom: 5.2em;
   }
-  svg{
+  svg {
     fill: #a6b0cf;
     width: 16px;
     height: 16px;
@@ -23,6 +24,8 @@ export const UserChatListWrapper = styled.div`
   background-color: ${color('background1')};
   color: #a6b0cf;
   padding: 1em;
+  display: flex;
+  flex-direction: column;
   .cs-search-bar {
     padding: 0.8em;
     background-color: ${color('background2')};
@@ -46,9 +49,9 @@ export const UserChatListWrapper = styled.div`
     width: 16px;
   }
   .cs-list-user {
-    margin-top: 2em;
+    margin: 2em 0;
     overflow-y: hidden;
-    height: 85%;
+    height: 70vh;
     .cs-one-user {
       display: flex;
       flex-direction: row;
@@ -61,7 +64,7 @@ export const UserChatListWrapper = styled.div`
       .cs-avt {
         margin-right: 1em;
 
-        svg{
+        svg {
           position: absolute;
           bottom: 0;
           left: 0;
@@ -87,6 +90,9 @@ export const UserChatListWrapper = styled.div`
   }
   .cs-list-user:hover {
     overflow-y: auto;
+  }
+  .addChatBtn {
+    justify-self: flex-end;
   }
 `;
 export const ChatContainerWrapper = styled.div`
@@ -117,7 +123,8 @@ export const ChatContainerWrapper = styled.div`
     .cs-chat-icons-tool {
       display: flex;
       align-items: center;
-      svg, i {
+      svg,
+      i {
         margin: 0 1em;
         cursor: pointer;
       }
@@ -216,12 +223,28 @@ export const ChatContainerWrapper = styled.div`
         i {
           margin: 0;
         }
-        svg{
+        svg {
           margin: 0;
         }
       }
       button:hover {
         background-color: #36414a;
+      }
+    }
+  }
+`;
+
+export const AddNewChatWrapper = styled.div`
+  .kJRll .modal__body {
+    display: grid;
+    gap: 16px;
+
+    .switch-chatAll {
+      display: flex;
+      align-items: center;
+
+      label {
+        margin-right: 16px;
       }
     }
   }

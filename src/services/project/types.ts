@@ -46,10 +46,10 @@ interface IOriginator {
   id: string;
   name: string;
 }
-interface IMember {
+export interface IMember {
   member_id: string;
   name: string;
-  position: string;
+  position?: string;
 }
 
 interface IUnit {
