@@ -6,6 +6,7 @@ import authReducer from './auth';
 import projectReducer from './project';
 import docReducer from './doc';
 import persistReducer from 'redux-persist/es/persistReducer';
+
 const appPersistConfig = {
   key: 'app',
   storage,

@@ -3,6 +3,7 @@ import {
   postService,
   putService,
 } from 'src/lib/helpers/connectApi';
+import { ITaskRes } from '../tasks/types';
 import IDoc, { ICreateDocReq, IDocHistory, IEditDocReq } from './types';
 const endpoint = '/doc';
 
@@ -19,7 +20,24 @@ export const getListDocSelectsApi = (projectId: string) => {
 };
 
 export const getDocDetailApi = (docId: string): Promise<IDoc> => {
-  return getService(`${endpoint}/${docId}`);
+  return getService(`${endpoint}/detail/${docId}`);
+};
+
+export const getDocMemberApi = (
+  docId: string
+): Promise<Array<{ id_member: string; name: string }>> => {
+  return getService(`${endpoint}/member/${docId}`);
+};
+
+export const addDocMemberApi = (
+  docId: string,
+  userId: string
+): Promise<Array<{ id_member: string; name: string }>> => {
+  return postService(`${endpoint}/member`, { docId, userId });
+};
+
+export const getListTaskInDocApi = (docId: string): Promise<ITaskRes[]> => {
+  return getService(`${endpoint}/tasks/${docId}`);
 };
 
 export const createDocApi = (req: ICreateDocReq) => {

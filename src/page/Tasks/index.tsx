@@ -17,11 +17,16 @@ import { TaskScreenSwapper } from './style';
 import { uniqueId } from 'lodash';
 import Modal from 'src/components/Base/Modal';
 import DetailTaskModal from './components/DetailTaskModal';
+import { getListTaskInDocApi } from 'src/services/doc/api';
 
 interface IProps {
   showHeader?: boolean;
+  docId?: string;
 }
-const TaskScreen: FunctionComponent<IProps> = ({ showHeader = true }) => {
+const TaskScreen: FunctionComponent<IProps> = ({
+  showHeader = true,
+  docId,
+}) => {
   const projectId = useAppSelector((state) => state.app.projectId);
   const [isShowAdd, setIsShowAdd] = useState(false);
   const [listTask, setListTask] = useState<ITaskRes[]>([]);
@@ -37,8 +42,13 @@ const TaskScreen: FunctionComponent<IProps> = ({ showHeader = true }) => {
   const dispatch = useAppDispatch();
   const getListTask = useCallback(async () => {
     try {
-      const result = await getListTaskApi(projectId);
-      setListTask(result.data);
+      if (docId) {
+        const result = await getListTaskInDocApi(docId);
+        setListTask(result);
+      } else {
+        const result = await getListTaskApi(projectId);
+        setListTask(result.data);
+      }
     } catch (error) {
       dispatch(
         createAppErr({
@@ -46,7 +56,7 @@ const TaskScreen: FunctionComponent<IProps> = ({ showHeader = true }) => {
         })
       );
     }
-  }, [dispatch, projectId]);
+  }, [dispatch, docId, projectId]);
 
   useEffect(() => {
     dispatch(getDocSelectService({ projectId }));

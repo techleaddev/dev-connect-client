@@ -1,5 +1,4 @@
-import React, { ChangeEvent, FunctionComponent } from 'react';
-import { BoxWithHeader } from 'src/components/Base/Box';
+import { ChangeEvent, FunctionComponent } from 'react';
 import DatePicker from 'src/components/Base/DatePicker';
 import { InputNormal } from 'src/components/Base/Input';
 import { SelectFieldNormal } from 'src/components/Base/SelectField';

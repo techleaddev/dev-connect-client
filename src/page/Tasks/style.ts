@@ -1,4 +1,3 @@
-import { color } from 'src/lib/theme/mixin';
 import styled from 'styled-components';
 
 export const TaskScreenSwapper = styled.div`
@@ -13,6 +12,11 @@ export const TaskScreenSwapper = styled.div`
       grid-template-columns: 68px 160px 160px 120px 0.5fr 1fr 100px 64px;
       border-left: 4px solid;
       align-items: center;
+/* 
+      &.taskInDoc {
+        grid-template-columns: 68px 160px 160px 120px 0.5fr 1fr 100px;
+      } */
+
       p {
         margin: 0;
         white-space: nowrap;
