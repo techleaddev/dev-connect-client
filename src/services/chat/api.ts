@@ -1,7 +1,11 @@
 import { getService, postService } from 'src/lib/helpers/connectApi';
-import { IConversation, IGetChatFromDocRes } from './types';
+import { IConversation, ICreateChatroomReq, IGetChatFromDocRes } from './types';
 
 const endpoint = '/chat';
+
+export function createChatApi(request: ICreateChatroomReq): Promise<IConversation> {
+  return postService(`${endpoint}/group`, request);
+}
 
 export const getMyChatsApi = (projectId: string) => {
   return getService(endpoint, { projectId });

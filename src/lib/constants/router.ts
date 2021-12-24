@@ -28,7 +28,10 @@ const ROUTER_NAME = {
     path: '/todo',
   },
   preferences:{
-    path: '/preferences'
+    path: '/preferences',
+  },
+  snippets: {
+    path: '/snippets',
   }
 };
 export default ROUTER_NAME;

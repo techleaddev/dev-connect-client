@@ -99,10 +99,12 @@ const HeaderBar = memo(() => {
         </div>
         <CopyField value={userInfo.email} className="copy_email" />
         <div className="header_set">
-          <button>{commonWord('editStatus')}</button>
-          <button>{commonWord('editProfile')}</button>
           <button onClick={nextToPreference}>
             {commonWord('preferences')}
+          </button>
+          <button>{commonWord('snippet')}</button>
+          <button onClick={() => history.push(ROUTER_NAME.welcome.path)}>
+            {commonWord('project')}
           </button>
         </div>
         <button onClick={onLogout}>{commonWord('logout')}</button>

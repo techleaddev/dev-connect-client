@@ -52,6 +52,7 @@ const MemberTab: FunctionComponent<IProps> = ({ docId }) => {
   useEffect(() => {
     getDocMember();
   }, [getDocMember]);
+  
   const onAddMember = async () => {
     try {
       const listUserId = addMem.map((item) => item.value);

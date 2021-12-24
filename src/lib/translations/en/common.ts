@@ -10,6 +10,8 @@ const commonTranslate: CommonTranslateType = {
   logout: "Logout",
   dashboard: "Dashboard",
   filter: "Filter",
+  project: 'Projects',
+  snippet: 'Code Templates'
 };
 
 export default commonTranslate;
