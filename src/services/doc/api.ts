@@ -1,4 +1,5 @@
 import {
+  deleteService,
   getService,
   postService,
   putService,
@@ -31,10 +32,18 @@ export const getDocMemberApi = (
 
 export const addDocMemberApi = (
   docId: string,
-  userId: string
+  listUserId: string[]
 ): Promise<Array<{ id_member: string; name: string }>> => {
-  return postService(`${endpoint}/member`, { docId, userId });
+  return postService(`${endpoint}/member`, { docId, listUserId });
 };
+
+export const deleteDocMemberApi = (
+  docId: string,
+  userId: string,
+): Promise<Array<{ id_member: string; name: string }>> => {
+  return deleteService(`${endpoint}/member`, { docId, userId });
+};
+
 
 export const getListTaskInDocApi = (docId: string): Promise<ITaskRes[]> => {
   return getService(`${endpoint}/tasks/${docId}`);

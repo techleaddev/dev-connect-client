@@ -20,7 +20,7 @@ export const ModalWrapper = styled.div`
   .modal {
     background-color: ${color("background2")};
     border-radius: 8px;
-    min-width: 300px;
+    min-width: 30vw;
     text-align: start;
 
     &__header {

@@ -1,16 +1,18 @@
-import {
-  ChangeEvent,
-  FunctionComponent,
-  useCallback,
-  useEffect,
-  useState,
-} from 'react';
-import { InputNormal } from 'src/components/Base/Input';
+import { FunctionComponent, useCallback, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import Modal from 'src/components/Base/Modal';
+import { SelectFieldNormal } from 'src/components/Base/SelectField';
 import ListMember from 'src/components/Common/ListMember';
+import useMemberOptions from 'src/hooks/project/useMemberOptions';
 import { useAppDispatch } from 'src/hooks/useAppDispatch';
+import { SELECT_OPTION } from 'src/lib/constants/options';
+import { DocTranslateKeyType } from 'src/lib/translations/vn/doc';
 import { addSnackBar } from 'src/services/app';
-import { addDocMemberApi, getDocMemberApi } from 'src/services/doc/api';
+import {
+  addDocMemberApi,
+  deleteDocMemberApi,
+  getDocMemberApi,
+} from 'src/services/doc/api';
 import { IMember } from 'src/services/project/types';
 
 interface IProps {
@@ -19,10 +21,18 @@ interface IProps {
 
 const MemberTab: FunctionComponent<IProps> = ({ docId }) => {
   const dispatch = useAppDispatch();
+  const memberOptions = useMemberOptions();
+  const { t } = useTranslation();
+  const words = useCallback(
+    (title: DocTranslateKeyType) => t(`docTranslate.${title}`),
+    [t]
+  );
+
   const [state, setState] = useState<IMember[]>([]);
   const [isShowAddMember, setIsShowAddMember] = useState(false);
-  const [isShowDelete, setIsShowDelete] = useState(false);
-  const [addMem, setAddMem] = useState<string>('');
+  const [deleteId, setDeleteId] = useState('');
+  const [addMem, setAddMem] = useState<SELECT_OPTION[]>([]);
+
   const getDocMember = useCallback(async () => {
     try {
       const memberRaw = (await getDocMemberApi(docId)) || [];
@@ -31,6 +41,11 @@ const MemberTab: FunctionComponent<IProps> = ({ docId }) => {
         member_id: item.id_member,
       }));
       setState(member);
+      const options: SELECT_OPTION[] = memberRaw.map((item) => ({
+        label: item.name,
+        value: item.id_member,
+      }));
+      setAddMem(options);
     } catch (error) {}
   }, [docId]);
 
@@ -39,8 +54,8 @@ const MemberTab: FunctionComponent<IProps> = ({ docId }) => {
   }, [getDocMember]);
   const onAddMember = async () => {
     try {
-      // await addMember(addMem, projectInfo._id);
-      await addDocMemberApi(docId, '')
+      const listUserId = addMem.map((item) => item.value);
+      await addDocMemberApi(docId, listUserId);
       getDocMember();
       dispatch(
         addSnackBar({
@@ -54,19 +69,48 @@ const MemberTab: FunctionComponent<IProps> = ({ docId }) => {
       );
     } finally {
       setIsShowAddMember(false);
-      setAddMem('');
+      setAddMem([]);
     }
   };
-  const handleChangeAdd = (e: ChangeEvent<HTMLInputElement>) => {
-    setAddMem(e.target.value);
+
+  const handleChangeAdd = (value: SELECT_OPTION[]) => {
+    setAddMem(value);
   };
-  const onDelete = () => {};
+
+  const onDelete = async () => {
+    try {
+      const newMems = await deleteDocMemberApi(docId, deleteId);
+      dispatch(
+        addSnackBar({
+          type: 'success',
+          message: 'Xóa thành viên thành công',
+        })
+      );
+      const member = newMems.map((item) => ({
+        name: item.name,
+        member_id: item.id_member,
+      }));
+      setState(member);
+      const options: SELECT_OPTION[] = newMems.map((item) => ({
+        label: item.name,
+        value: item.id_member,
+      }));
+      setAddMem(options);
+    } catch (error) {
+      dispatch(
+        addSnackBar({ type: 'error', message: 'Xóa thành viên thất bại' })
+      );
+    } finally {
+      setDeleteId('');
+    }
+  };
+
   return (
     <div>
       <ListMember
         members={state}
         handleShowAdd={() => setIsShowAddMember(true)}
-        handleDelete={() => null}
+        handleDelete={(id) => setDeleteId(id)}
       />
       <Modal
         isShow={isShowAddMember}
@@ -75,14 +119,25 @@ const MemberTab: FunctionComponent<IProps> = ({ docId }) => {
         onClose={() => setIsShowAddMember(false)}
         submitBtn="Add"
         onSubmit={onAddMember}
+        disableSubmit={!addMem.length}
       >
-        <InputNormal title="Email" onChange={handleChangeAdd} value={addMem} />
+        <SelectFieldNormal
+          name="members"
+          placeholder={words('members')}
+          title={words('members')}
+          value={addMem}
+          options={memberOptions}
+          rules={{ required: true }}
+          closeMenuOnSelect={false}
+          isMulti
+          onChange={handleChangeAdd}
+        />
       </Modal>
       <Modal
-        isShow={isShowDelete}
+        isShow={!!deleteId}
         title={`Xoá member`}
         closeBtn="Close"
-        onClose={() => setIsShowDelete(false)}
+        onClose={() => setDeleteId('')}
         submitBtn="Xóa"
         onSubmit={onDelete}
       >
