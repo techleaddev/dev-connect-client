@@ -10,7 +10,6 @@ export const APIBoxWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 150px 200px repeat(2, 32px);
   align-items: center;
-  justify-items: center;
   border-left: 6px solid;
   column-gap: 24px;
 

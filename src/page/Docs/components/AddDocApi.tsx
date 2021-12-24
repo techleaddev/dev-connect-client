@@ -36,6 +36,7 @@ interface IProps {
   isShow: boolean;
   handleDismiss: () => void;
   words: (title: DocTranslateKeyType) => string;
+  addSuccess(): void;
 }
 
 interface IApiBasicInfo {
@@ -50,6 +51,7 @@ const AddDocApi: FunctionComponent<IProps> = ({
   isShow,
   handleDismiss,
   words,
+  addSuccess,
 }) => {
   const {
     control,
@@ -173,6 +175,7 @@ const AddDocApi: FunctionComponent<IProps> = ({
           addSnackBar({ type: 'success', message: words('createSuccess') })
         );
         handleDismiss();
+        addSuccess();
       })
       .catch((error) => {
         dispatch(

@@ -11,7 +11,7 @@ export const DocsScreenWrapper = styled.div`
     &__header {
       display: grid;
       padding: 12px 8px;
-      grid-template-columns: 1fr 180px 200px 64px;
+      grid-template-columns: 1fr 154px 180px 120px;
       gap: 18px;
       div:first-child {
         display: grid;

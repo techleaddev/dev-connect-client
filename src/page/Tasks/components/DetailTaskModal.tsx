@@ -19,6 +19,7 @@ import { ReactComponent as TimeIcon } from 'src/assets/icons/time-past.svg';
 import { DetailTaskModalWrapper } from '../style';
 import { getTaskDetailApi } from 'src/services/tasks/api';
 import { ITask } from 'src/services/tasks/types';
+import HistoryTab from './HistoryTab';
 interface IProps {
   isShow: boolean;
   taskId: string;
@@ -44,7 +45,7 @@ const DetailTaskModal: FunctionComponent<IProps> = memo(
         //     tab: <CodeSnippet {...data} />,
         //   },
         //   { key: 3, tab: <TestTab /> },
-        //   { key: 4, tab: <TaskScreen showHeader={false} /> },
+        { key: 4, tab: <HistoryTab taskId={taskId} /> },
         //   { key: 6, tab: <HistoryTab docId={taskId} /> },
       ],
       // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -61,8 +62,10 @@ const DetailTaskModal: FunctionComponent<IProps> = memo(
       []
     );
     const getTaskDetail = useCallback(async () => {
-      const data = await getTaskDetailApi(taskId || '');
-      setDataDetail(data);
+      if (taskId) {
+        const data = await getTaskDetailApi(taskId || '');
+        setDataDetail(data);
+      }
     }, [taskId]);
 
     useEffect(() => {

@@ -62,6 +62,8 @@ export const MainLoading = styled.div`
 export const SnackBar = styled.div`
   position: fixed;
   bottom: 1em;
+  z-index: 108;
+  
   .snack {
     width: 250px;
     height: 50px;

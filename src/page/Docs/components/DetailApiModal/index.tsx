@@ -33,7 +33,7 @@ const DetailApiModal: FunctionComponent<IProps> = ({
     () => [
       {
         key: 1,
-        tab: <DetailTab />,
+        tab: <DetailTab docId={data._id} />,
       },
       {
         key: 2,

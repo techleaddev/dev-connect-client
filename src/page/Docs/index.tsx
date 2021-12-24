@@ -37,7 +37,7 @@ const DocsScreen = () => {
   const history = useHistory();
 
   const getListDocs = useCallback(
-    async (page: number, search: string) => {
+    async (page?: number, search?: string) => {
       try {
         const result = await getListDocsApi(projectId, page, search);
         setListDocs(result.data);
@@ -112,6 +112,7 @@ const DocsScreen = () => {
         isShow={isShowAdd}
         handleDismiss={() => setIsShowAdd(false)}
         words={words}
+        addSuccess={getListDocs}
       />
       <Pagination
         totalPage={totalPage}

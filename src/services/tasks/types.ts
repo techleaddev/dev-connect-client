@@ -28,3 +28,18 @@ export interface ITaskRes {
     color: string;
   };
 }
+
+export interface ITaskHistory {
+  taskId: string;
+  author: {
+    _id: string;
+    first_name: string;
+    last_name: string;
+  };
+  docId: string;
+  diff: {
+    from: any;
+    to: any;
+  };
+  createdAt: Date;
+}

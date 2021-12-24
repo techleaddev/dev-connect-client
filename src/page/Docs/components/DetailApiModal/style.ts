@@ -56,6 +56,21 @@ export const HistoryTabWrapper = styled.div`
 `;
 
 export const DetailTabWrapper = styled.div`
+  .reviewDetail {
+    display: grid;
+    gap: 16px;
+    margin-top: 16px;
+    .dt_element {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      
+      h4,
+      p {
+        margin: 0;
+        white-space: break-spaces;
+      }
+    }
+  }
 `;
 
 export const TestTabWrapper = styled.div`
