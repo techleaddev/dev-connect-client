@@ -51,7 +51,7 @@ const LoginFrom: FunctionComponent<IProps> = ({
         name="email"
         control={control}
         placeholder="Email"
-        error={errors?.email?.message}
+        error={errors?.email?.message as string}
         rules={{
           required: { value: true, message: word('requiredFeild') },
           pattern: {
@@ -65,7 +65,7 @@ const LoginFrom: FunctionComponent<IProps> = ({
         control={control}
         type="password"
         placeholder="Password"
-        error={errors?.password?.message}
+        error={errors?.password?.message as string}
         rules={{
           required: { value: true, message: word('requiredFeild') },
         }}

@@ -1,4 +1,3 @@
-import Modal from 'src/components/Base/Modal';
 import { color } from 'src/lib/theme/mixin';
 import styled from 'styled-components';
 

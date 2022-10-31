@@ -49,7 +49,7 @@ const SignUpFrom: FunctionComponent<IProps> = ({
         name="first_name"
         control={control}
         placeholder="First Name"
-        error={errors?.first_name?.message}
+        error={errors?.first_name?.message as string}
         rules={{
           required: { value: true, message: word('requiredFeild') },
         }}
@@ -58,7 +58,7 @@ const SignUpFrom: FunctionComponent<IProps> = ({
         name="last_name"
         control={control}
         placeholder="Last Name"
-        error={errors?.last_name?.message}
+        error={errors?.last_name?.message as string}
         rules={{
           required: { value: true, message: word('requiredFeild') },
         }}
@@ -67,7 +67,7 @@ const SignUpFrom: FunctionComponent<IProps> = ({
         name="email"
         control={control}
         placeholder="Email"
-        error={errors?.email?.message}
+        error={errors?.email?.message as string}
         rules={{
           required: { value: true, message: word('requiredFeild') },
           pattern: {
@@ -81,7 +81,7 @@ const SignUpFrom: FunctionComponent<IProps> = ({
         control={control}
         placeholder="Password"
         type="password"
-        error={errors?.password?.message}
+        error={errors?.password?.message as string}
         rules={{
           required: { value: true, message: word('requiredFeild') },
         }}
